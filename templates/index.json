@@ -11,11 +11,15 @@
   "sections": {
     "hero": {
       "type": "hero-banner",
-      "settings": {}
+      "settings": {
+        "hero_image_left": "shopify://shop_images/hero-image-1.jpg",
+        "hero_image_right": "shopify://shop_images/hero-image-2.jpg"
+      }
     },
     "products": {
       "type": "product-grid",
       "settings": {
+        "collection": "",
         "products_to_show": 4
       }
     }
