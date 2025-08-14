@@ -1,0 +1,149 @@
+{% comment %}
+  Hero banner section for MEMEN homepage
+{% endcomment %}
+
+<section class="hero-banner">
+  <div class="hero-banner__content">
+    <div class="hero-banner__text">
+      <h1 class="hero-banner__title">MEMEN</h1>
+      <p class="hero-banner__subtitle">
+        01<br>
+        fall collection<br>
+        more timeless
+      </p>
+      <div class="hero-banner__link">
+        <a href="{{ collections.all.url }}">shop →</a>
+      </div>
+    </div>
+    
+    <div class="hero-banner__images">
+      <div class="hero-banner__image-left">
+        {% if section.settings.hero_image_left %}
+          {{ section.settings.hero_image_left | image_url: width: 420 | image_tag: loading: 'lazy', alt: 'MEMEN fall collection' }}
+        {% endif %}
+      </div>
+      <div class="hero-banner__image-right">
+        {% if section.settings.hero_image_right %}
+          {{ section.settings.hero_image_right | image_url: width: 420 | image_tag: loading: 'lazy', alt: 'MEMEN fall collection' }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .hero-banner {
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding-top: 110px; /* Account for fixed header + announcement bar */
+  }
+
+  .hero-banner__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 110px);
+    align-items: center;
+  }
+
+  .hero-banner__text {
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .hero-banner__title {
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: #000;
+  }
+
+  .hero-banner__subtitle {
+    font-size: 16px;
+    line-height: 1.4;
+    color: #666;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .hero-banner__link a {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s ease;
+  }
+
+  .hero-banner__link a:hover {
+    opacity: 0.7;
+  }
+
+  .hero-banner__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 110px);
+    gap: 0;
+  }
+
+  .hero-banner__image-left,
+  .hero-banner__image-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-banner__image-left img,
+  .hero-banner__image-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner__content {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto;
+    }
+
+    .hero-banner__text {
+      padding: 40px 20px;
+      order: 2;
+    }
+
+    .hero-banner__title {
+      font-size: 32px;
+    }
+
+    .hero-banner__images {
+      height: 60vh;
+      order: 1;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image_left",
+      "label": "Left Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_right", 
+      "label": "Right Hero Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

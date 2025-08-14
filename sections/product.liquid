@@ -1,45 +1,297 @@
 {% comment %}
-  This section is used in the product template to render product page with
-  media, content, and add-to-cart form.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
+  MEMEN Product page - matches the detailed product design
 {% endcomment %}
 
-<div class="product-images">
-  {% for image in product.images %}
-    {% render 'image', class: 'product-image', image: image %}
-  {% endfor %}
-</div>
+<section class="product-page">
+  <div class="product-layout">
+    <div class="product-images">
+      {% if product.images.size > 0 %}
+        <div class="product-images__main">
+          <img 
+            src="{{ product.featured_image | image_url: width: 600 }}" 
+            alt="{{ product.title }}"
+            class="product-image__main"
+          />
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="product-images__thumbnails">
+            {% for image in product.images %}
+              <img 
+                src="{{ image | image_url: width: 120 }}" 
+                alt="{{ product.title }}"
+                class="product-image__thumbnail {% if forloop.first %}active{% endif %}"
+                data-image-index="{{ forloop.index0 }}"
+              />
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="product-image__placeholder">
+          <div class="product-image__placeholder-corner"></div>
+        </div>
+      {% endif %}
+    </div>
 
-<div class="product-info">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <p>{{ product.description }}</p>
-</div>
-
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
-
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
+    <div class="product-details">
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title | default: 'mila bag' }}</h1>
+        <p class="product-variant">{{ product.selected_or_first_available_variant.title | default: 'OS. Black' }}</p>
+        <p class="product-price">{{ product.price | money | default: '$465.00' }}</p>
+        <p class="product-taxes">+ applicable local taxes / duties</p>
+        
+        <div class="product-description">
+          {% if product.description != blank %}
+            {{ product.description }}
+          {% else %}
+            <p>Elongated, wrap-around hobo-style shoulder bag.</p>
+            
+            <p>Vegetable tanning process, which gives it a natural look, slight tone variations are a normal characteristic of this leather.</p>
+            
+            <p>Color black.</p>
+            
+            <p>Made in Ethiopia.</p>
+            
+            <p>Ref. UE0002</p>
           {% endif %}
-        >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
-      {% endfor %}
-    </select>
+        </div>
+      </div>
 
-    <input type="text" name="quantity" min="1" value="1">
+      <div class="product-form">
+        {% form 'product', product %}
+          {% assign current_variant = product.selected_or_first_available_variant %}
 
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
-</div>
+          {% if product.variants.size > 1 %}
+            <div class="product-variants">
+              <select name="id" class="variant-selector">
+                {% for variant in product.variants %}
+                  <option
+                    value="{{ variant.id }}"
+                    {% if variant == current_variant %}selected="selected"{% endif %}
+                    {% unless variant.available %}disabled{% endunless %}
+                  >
+                    {{ variant.title }} - {{ variant.price | money }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% else %}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {% endif %}
+
+          <div class="product-actions">
+            <button type="submit" class="add-to-cart-btn" {% unless current_variant.available %}disabled{% endunless %}>
+              {% if current_variant.available %}
+                add to cart
+              {% else %}
+                sold out
+              {% endif %}
+            </button>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .product-page {
+    padding-top: 110px; /* Account for fixed header + announcement bar */
+    background-color: #fff;
+    min-height: 100vh;
+  }
+
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 60px;
+    padding: 40px 20px;
+  }
+
+  .product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .product-images__main {
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .product-image__main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-images__thumbnails {
+    display: flex;
+    gap: 10px;
+  }
+
+  .product-image__thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .product-image__thumbnail.active,
+  .product-image__thumbnail:hover {
+    opacity: 1;
+  }
+
+  .product-image__placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #f5f5f5;
+    position: relative;
+    border: 1px solid #ddd;
+  }
+
+  .product-image__placeholder-corner {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid #ddd;
+  }
+
+  .product-image__placeholder-corner::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 30px;
+    height: 30px;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+  }
+
+  .product-image__placeholder-corner::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 30px;
+    height: 30px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .product-title {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+    color: #000;
+  }
+
+  .product-variant {
+    font-size: 16px;
+    color: #000;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .product-price {
+    font-size: 18px;
+    color: #000;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .product-taxes {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .product-description {
+    margin-top: 20px;
+  }
+
+  .product-description p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  .product-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .product-form {
+    margin-top: auto;
+  }
+
+  .variant-selector {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .add-to-cart-btn:hover:not(:disabled) {
+    background-color: #333;
+  }
+
+  .add-to-cart-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    .product-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 20px 15px;
+    }
+
+    .product-title {
+      font-size: 20px;
+    }
+
+    .product-images__thumbnails {
+      justify-content: center;
+    }
+  }
+{% endstylesheet %}
+
+{{ 'product-gallery.js' | asset_url | script_tag }}
 
 {% schema %}
 {

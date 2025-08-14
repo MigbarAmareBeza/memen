@@ -9,12 +9,19 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
+    "hero": {
+      "type": "hero-banner",
       "settings": {}
+    },
+    "products": {
+      "type": "product-grid",
+      "settings": {
+        "products_to_show": 4
+      }
     }
   },
   "order": [
-    "main"
+    "hero",
+    "products"
   ]
 }

@@ -1,0 +1,102 @@
+{% comment %}
+  Announcement bar for shipping notice
+{% endcomment %}
+
+{% if section.settings.announcement_text != blank %}
+  <div class="announcement-bar">
+    <div class="announcement-bar__content">
+      <p class="announcement-bar__text">{{ section.settings.announcement_text }}</p>
+      {% if section.settings.show_close_button %}
+        <button class="announcement-bar__close" onclick="this.parentElement.parentElement.style.display='none'">
+          ×
+        </button>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .announcement-bar {
+    background-color: #f0f8ff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 0;
+    position: relative;
+    z-index: 101;
+  }
+
+  .announcement-bar__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .announcement-bar__text {
+    font-size: 12px;
+    color: #0066cc;
+    margin: 0;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .announcement-bar__text a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+
+  .announcement-bar__close {
+    position: absolute;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #0066cc;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .announcement-bar__close:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .announcement-bar__text {
+      font-size: 11px;
+      padding-right: 30px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Please note in-stock pieces will ship within an estimated two weeks of order."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close_button",
+      "label": "Show close button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

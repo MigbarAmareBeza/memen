@@ -1,39 +1,80 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
-
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
-    {% endif %}
+<footer class="footer">
+  <div class="footer__content">
+    <div class="footer__links">
+      <a href="#" class="footer__link">ABOUT</a>
+      <a href="#" class="footer__link">VALUES</a>
+      <a href="#" class="footer__link">CONTACT</a>
+      <a href="#" class="footer__link">POLICIES</a>
+      <a href="#" class="footer__link">STOCKLIST</a>
+      <a href="#" class="footer__link">INSTAGRAM</a>
+    </div>
+    
+    <div class="footer__copyright">
+      <p>&copy; 2025 All rights reserved.</p>
+    </div>
   </div>
 </footer>
 
 {% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+  .footer {
+    background-color: #fff;
+    padding: 60px 20px 40px;
+    border-top: 1px solid #eee;
+    margin-top: 80px;
   }
-  footer a {
+
+  .footer__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .footer__link {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #000;
     text-decoration: none;
-    color: var(--color-foreground);
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
   }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
+
+  .footer__link:hover {
+    opacity: 0.7;
+  }
+
+  .footer__copyright {
+    text-align: center;
+  }
+
+  .footer__copyright p {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 40px 20px 30px;
+      margin-top: 60px;
+    }
+
+    .footer__links {
+      gap: 20px;
+    }
+
+    .footer__content {
+      gap: 30px;
+    }
   }
 {% endstylesheet %}
 

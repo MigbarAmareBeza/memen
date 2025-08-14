@@ -1,54 +1,86 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
-
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </a>
-  </div>
+<header class="header">
+  <nav class="header__nav">
+    <a href="{{ routes.root_url }}" class="header__logo">MEMEN</a>
+    
+    <div class="header__menu">
+      <a href="{{ routes.root_url }}" class="header__link">SHOP</a>
+      <a href="#" class="header__link">CAMPAIGNS</a>
+      <a href="#" class="header__link">IMPACT</a>
+      <a href="{{ routes.search_url }}" class="header__link">SEARCH</a>
+      <a href="{{ routes.cart_url }}" class="header__link">
+        CART({{ cart.item_count }})
+      </a>
+    </div>
+  </nav>
 </header>
 
 {% stylesheet %}
-  header {
-    height: 5rem;
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+  }
+
+  .header__nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
-  header a {
-    position: relative;
+
+  .header__logo {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: #000;
     text-decoration: none;
-    color: var(--color-foreground);
   }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
-  }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
+
+  .header__menu {
     display: flex;
-    gap: 1rem;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .header__link {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+  }
+
+  .header__link:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .header__menu {
+      gap: 20px;
+    }
+    
+    .header__link {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header__nav {
+      padding: 0 15px;
+    }
+    
+    .header__menu {
+      gap: 15px;
+    }
   }
 {% endstylesheet %}
 

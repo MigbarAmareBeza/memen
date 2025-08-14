@@ -11,12 +11,20 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "settings": {
+        "announcement_text": "Please note in-stock pieces will ship within an estimated two weeks of order.",
+        "show_close_button": true
+      }
+    },
     "header": {
       "type": "header",
       "settings": {}
     }
   },
   "order": [
+    "announcement",
     "header"
-  ],
+  ]
 }

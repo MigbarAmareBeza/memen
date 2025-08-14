@@ -76,6 +76,7 @@ body {
   font-family: var(--font-primary--family);
   background-color: var(--color-background);
   color: var(--color-foreground);
+  padding-top: 0; /* Remove default padding since header is fixed */
 }
 
 /** Section layout utilities */
