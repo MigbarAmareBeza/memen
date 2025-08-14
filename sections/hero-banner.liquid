@@ -8,12 +8,12 @@
       {% if section.settings.hero_image_left %}
         {{ section.settings.hero_image_left | image_url: width: 800 | image_tag: loading: 'lazy', alt: 'MEMEN fall collection' }}
       {% endif %}
-      <div class="hero-banner__text">
+      <div class="hero-banner__text hero-banner__text--left">
         <h1 class="hero-banner__title">MEMEN</h1>
         <p class="hero-banner__subtitle">
           01<br>
-          fall collection<br>
-          more timeless
+          <span class="hero-banner__indent">fall collection</span><br>
+          <span class="hero-banner__indent">more timeless</span>
         </p>
         <div class="hero-banner__link">
           <a href="{{ collections.all.url }}">shop →</a>
@@ -24,6 +24,17 @@
       {% if section.settings.hero_image_right %}
         {{ section.settings.hero_image_right | image_url: width: 800 | image_tag: loading: 'lazy', alt: 'MEMEN fall collection' }}
       {% endif %}
+      <div class="hero-banner__text hero-banner__text--right">
+        <h1 class="hero-banner__title">MEMEN</h1>
+        <p class="hero-banner__subtitle">
+          01<br>
+          <span class="hero-banner__indent">fall collection</span><br>
+          <span class="hero-banner__indent">more timeless</span>
+        </p>
+        <div class="hero-banner__link">
+          <a href="{{ collections.all.url }}">shop →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -37,15 +48,19 @@
 
   .hero-banner__images {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr; /* First image 1.5x bigger */
     height: calc(100vh - 97px);
-    gap: 0;
+    gap: 20px; /* Add spacing between images */
   }
 
   .hero-banner__image-left,
   .hero-banner__image-right {
     position: relative;
     overflow: hidden;
+  }
+
+  .hero-banner__image-left {
+    margin-left: 0; /* Remove left padding so it touches margin */
   }
 
   .hero-banner__image-left img,
@@ -57,35 +72,48 @@
 
   .hero-banner__text {
     position: absolute;
-    top: 60px;
-    left: 60px;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px; /* Smaller gap */
+  }
+
+  .hero-banner__text--left {
+    top: 40px; /* Reduced from 60px */
+    left: 40px; /* Reduced from 60px */
+  }
+
+  .hero-banner__text--right {
+    bottom: 40px; /* Bottom alignment */
+    right: 40px; /* Right alignment */
   }
 
   .hero-banner__title {
-    font-size: 32px;
+    font-size: 24px; /* Smaller from 32px */
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em; /* Reduced letter spacing */
     margin: 0;
     color: #ffffff;
   }
 
   .hero-banner__subtitle {
-    font-size: 16px;
+    font-size: 13px; /* Smaller from 16px */
     line-height: 1.4;
     color: #ffffff;
     margin: 0;
     font-weight: 400;
+    letter-spacing: -0.01em; /* Reduced letter spacing */
+  }
+
+  .hero-banner__indent {
+    margin-left: 20px; /* Add indent for depth */
   }
 
   .hero-banner__link a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 0.05em;
+    font-size: 11px; /* Smaller from 14px */
+    letter-spacing: -0.01em; /* Reduced letter spacing */
     transition: opacity 0.2s ease;
   }
 
@@ -97,30 +125,51 @@
     .hero-banner__images {
       grid-template-columns: 1fr;
       height: 100vh;
+      gap: 0;
     }
 
     .hero-banner__image-right {
       display: none;
     }
 
-    .hero-banner__text {
-      top: 40px;
+    .hero-banner__text--left {
+      top: 30px;
       left: 20px;
     }
 
     .hero-banner__title {
-      font-size: 24px;
+      font-size: 20px;
+    }
+
+    .hero-banner__subtitle {
+      font-size: 12px;
+    }
+
+    .hero-banner__link a {
+      font-size: 10px;
+    }
+
+    .hero-banner__indent {
+      margin-left: 15px;
     }
   }
 
   @media (max-width: 480px) {
-    .hero-banner__text {
-      top: 30px;
+    .hero-banner__text--left {
+      top: 20px;
       left: 15px;
     }
 
     .hero-banner__title {
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    .hero-banner__subtitle {
+      font-size: 11px;
+    }
+
+    .hero-banner__indent {
+      margin-left: 12px;
     }
   }
 {% endstylesheet %}
