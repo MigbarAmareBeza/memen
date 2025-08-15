@@ -1,0 +1,50 @@
+{% comment %}
+  Custom Button Component
+  
+  Usage:
+  {% render 'custom-button', 
+    text: 'Button Text',
+    url: '/path',
+    style: 'outline|filled',
+    type: 'button|submit',
+    disabled: true|false,
+    class: 'additional-classes'
+  %}
+{% endcomment %}
+
+{% liquid
+  assign button_text = text | default: 'Button'
+  assign button_url = url
+  assign button_style = style | default: 'outline'
+  assign button_type = type | default: 'button'
+  assign is_disabled = disabled | default: false
+  assign additional_class = class | default: ''
+  
+  assign button_classes = 'custom-button'
+  
+  if button_style == 'filled'
+    assign button_classes = button_classes | append: ' custom-button--filled'
+  endif
+  
+  if additional_class != blank
+    assign button_classes = button_classes | append: ' ' | append: additional_class
+  endif
+%}
+
+{% if button_url and button_url != blank %}
+  <a 
+    href="{{ button_url }}" 
+    class="{{ button_classes }}"
+    {% if is_disabled %}aria-disabled="true"{% endif %}
+  >
+    {{ button_text }}
+  </a>
+{% else %}
+  <button 
+    type="{{ button_type }}" 
+    class="{{ button_classes }}"
+    {% if is_disabled %}disabled{% endif %}
+  >
+    {{ button_text }}
+  </button>
+{% endif %}

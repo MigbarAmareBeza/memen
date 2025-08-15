@@ -1,0 +1,262 @@
+/* Product Page Styles - Based on Impact Page Design */
+
+.product-page {
+  padding: 40px 40px 10px;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+.product-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Product Images */
+.product-images {
+  position: sticky;
+  top: 40px;
+}
+
+.product-images__main {
+  margin-bottom: 20px;
+}
+
+.product-image__main {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-images__thumbnails {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.product-image__thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.product-image__thumbnail.active,
+.product-image__thumbnail:hover {
+  opacity: 1;
+  border-color: #000;
+}
+
+.product-image__placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-family: 'Realtime Rounded Test', sans-serif;
+}
+
+/* Product Details */
+.product-details {
+  font-family: 'Realtime Rounded Test', sans-serif;
+  color: #000000;
+}
+
+.product-info {
+  margin-bottom: 40px;
+}
+
+.product-title {
+  font-size: 31.2px;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  margin: 0 0 20px;
+  color: #000;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  text-transform: lowercase;
+}
+
+.product-variant {
+  font-size: 16px;
+  color: #000;
+  margin: 0 0 8px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.product-price {
+  font-size: 18px;
+  color: #000;
+  margin: 0 0 4px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.product-taxes {
+  font-size: 12px;
+  color: #666;
+  margin: 0 0 24px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.product-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000;
+  text-align: left;
+  padding-left: 0;
+}
+
+.product-description p {
+  margin: 0 0 24px;
+  text-align: left;
+}
+
+.product-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Product Form */
+.product-form {
+  margin-top: 40px;
+}
+
+.variant-selector {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 14px;
+  font-family: 'Realtime Rounded Test', sans-serif;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+/* Custom Button Element */
+.custom-button {
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #000;
+  font-size: 14px;
+  font-family: 'Realtime Rounded Test', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-button:hover:not(:disabled) {
+  background-color: #000;
+  color: #fff;
+}
+
+.custom-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.custom-button--filled {
+  background-color: #000;
+  color: #fff;
+}
+
+.custom-button--filled:hover:not(:disabled) {
+  background-color: #333;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #000;
+  font-size: 14px;
+  font-family: 'Realtime Rounded Test', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  background-color: #000;
+  color: #fff;
+}
+
+.add-to-cart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-page {
+    padding: 20px 20px 10px;
+  }
+
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .product-title {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  .product-description {
+    font-size: 15px;
+  }
+
+  .product-images {
+    position: static;
+  }
+
+  .product-images__thumbnails {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-page {
+    padding: 20px 15px 10px;
+  }
+
+  .product-title {
+    font-size: 23.4px;
+  }
+
+  .product-description {
+    font-size: 14px;
+  }
+
+  .custom-button,
+  .add-to-cart-btn {
+    padding: 14px 24px;
+    font-size: 13px;
+  }
+}
