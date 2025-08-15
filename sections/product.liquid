@@ -15,9 +15,9 @@
         </div>
         {% if product.images.size > 1 %}
           <div class="product-images__grid">
-            {% for image in product.images offset: 1 limit: 4 %}
+            {% for image in product.images offset: 1 limit: 3 %}
               <img 
-                src="{{ image | image_url: width: 300 }}" 
+                src="{{ image | image_url: width: 400 }}" 
                 alt="{{ product.title }}"
                 class="product-image__grid-item"
               />
@@ -33,7 +33,7 @@
 
     <div class="product-details">
       <div class="product-info">
-        <h1 class="product-title">{{ product.title | default: 'mila bag' }}</h1>
+        <h1 class="product-title">{{ product.title }}</h1>
         <p class="product-variant">{{ product.selected_or_first_available_variant.title | default: 'OS. Black' }}</p>
         <p class="product-price">{{ product.price | money | default: '$465.00' }}</p>
         <p class="product-taxes">+ applicable local taxes / duties</p>

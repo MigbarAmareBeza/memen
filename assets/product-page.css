@@ -40,15 +40,31 @@
 .product-images__grid {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 20px;
+  height: 500px;
 }
 
 .product-image__grid-item {
   width: 100%;
-  aspect-ratio: 1;
+  height: 100%;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.product-image__grid-item:first-child {
+  grid-row: 1 / -1;
+}
+
+.product-image__grid-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.product-image__grid-item:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .product-images__thumbnails {
@@ -148,7 +164,7 @@
   border-radius: 4px;
 }
 
-/* Custom Button Element with Crop Marks */
+/* Custom Button Element with Clean Crop Marks */
 .custom-button {
   display: inline-block;
   padding: 16px 32px;
@@ -162,23 +178,15 @@
   text-decoration: none;
   cursor: pointer;
   text-align: center;
-  width: 100%;
+  width: auto;
+  max-width: 200px;
   box-sizing: border-box;
   position: relative;
+  margin: 0 auto;
 }
 
+/* Four corner crop marks using pseudo-elements */
 .custom-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-/* Top-left crop mark */
-.custom-button::after {
   content: '';
   position: absolute;
   top: 0;
@@ -190,32 +198,31 @@
   pointer-events: none;
 }
 
-/* Additional crop marks using pseudo-elements on a wrapper */
+.custom-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #4A90E2;
+  border-right: 2px solid #4A90E2;
+  pointer-events: none;
+}
+
 .custom-button {
   background-image: 
-    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px);
+    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px),
+    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px),
+    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px),
+    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px);
   background-position: 
-    0 0,
-    0 0,
-    100% 100%,
-    100% 100%,
-    100% 0,
-    100% 0,
     0 100%,
-    0 100%;
+    0 100%,
+    100% 100%,
+    100% 100%;
   background-repeat: no-repeat;
   background-size: 
-    12px 2px,
-    2px 12px,
-    12px 2px,
-    2px 12px,
     12px 2px,
     2px 12px,
     12px 2px,
@@ -241,33 +248,50 @@
   text-decoration: none;
   cursor: pointer;
   text-align: center;
-  width: 100%;
+  width: auto;
+  max-width: 200px;
   box-sizing: border-box;
   position: relative;
+  margin: 0 auto;
+}
+
+.add-to-cart-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #4A90E2;
+  border-left: 2px solid #4A90E2;
+  pointer-events: none;
+}
+
+.add-to-cart-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #4A90E2;
+  border-right: 2px solid #4A90E2;
+  pointer-events: none;
+}
+
+.add-to-cart-btn {
   background-image: 
-    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
-    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px);
+    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px),
+    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px),
+    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px),
+    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px);
   background-position: 
-    0 0,
-    0 0,
-    100% 100%,
-    100% 100%,
-    100% 0,
-    100% 0,
     0 100%,
-    0 100%;
+    0 100%,
+    100% 100%,
+    100% 100%;
   background-repeat: no-repeat;
   background-size: 
-    12px 2px,
-    2px 12px,
-    12px 2px,
-    2px 12px,
     12px 2px,
     2px 12px,
     12px 2px,
