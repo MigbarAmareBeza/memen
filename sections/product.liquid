@@ -5,25 +5,16 @@
 <section class="product-page">
   <div class="product-layout">
     <div class="product-images">
-      {% if product.images.size > 0 %}
-        <div class="product-images__main">
-          <img 
-            src="{{ product.featured_image | image_url: width: 600 }}" 
-            alt="{{ product.title }}"
-            class="product-image__main"
-          />
+      {% if product.images.size > 1 %}
+        <div class="product-images__grid">
+          {% for image in product.images offset: 1 limit: 3 %}
+            <img 
+              src="{{ image | image_url: width: 600 }}" 
+              alt="{{ product.title }}"
+              class="product-image__grid-item"
+            />
+          {% endfor %}
         </div>
-        {% if product.images.size > 1 %}
-          <div class="product-images__grid">
-            {% for image in product.images offset: 1 limit: 3 %}
-              <img 
-                src="{{ image | image_url: width: 400 }}" 
-                alt="{{ product.title }}"
-                class="product-image__grid-item"
-              />
-            {% endfor %}
-          </div>
-        {% endif %}
       {% else %}
         <div class="product-image__placeholder">
           <div class="product-image__placeholder-corner"></div>

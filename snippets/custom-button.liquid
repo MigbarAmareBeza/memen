@@ -32,19 +32,23 @@
 %}
 
 {% if button_url and button_url != blank %}
-  <a 
-    href="{{ button_url }}" 
-    class="{{ button_classes }}"
-    {% if is_disabled %}aria-disabled="true"{% endif %}
-  >
-    {{ button_text }}
-  </a>
+  <div class="custom-button-wrapper">
+    <a 
+      href="{{ button_url }}" 
+      class="{{ button_classes }}"
+      {% if is_disabled %}aria-disabled="true"{% endif %}
+    >
+      {{ button_text }}
+    </a>
+  </div>
 {% else %}
-  <button 
-    type="{{ button_type }}" 
-    class="{{ button_classes }}"
-    {% if is_disabled %}disabled{% endif %}
-  >
-    {{ button_text }}
-  </button>
+  <div class="custom-button-wrapper">
+    <button 
+      type="{{ button_type }}" 
+      class="{{ button_classes }}"
+      {% if is_disabled %}disabled{% endif %}
+    >
+      {{ button_text }}
+    </button>
+  </div>
 {% endif %}
