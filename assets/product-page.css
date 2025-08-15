@@ -32,8 +32,9 @@
 
 .product-image__main {
   width: 100%;
-  height: 70vh;
-  min-height: 600px;
+  height: 85vh;
+  min-height: 700px;
+  aspect-ratio: 3/4;
   object-fit: cover;
   border-radius: 0;
   transition: opacity 0.3s ease;
@@ -60,24 +61,24 @@
 
 .product-image__thumbnail {
   flex: 1;
-  height: 120px;
-  border: 2px solid transparent;
+  height: 160px;
+  aspect-ratio: 3/4;
+  border: none;
   border-radius: 0;
   background: none;
   padding: 0;
   cursor: pointer;
-  transition: border-color 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.2s ease;
   opacity: 0.7;
+  margin: 0;
 }
 
 .product-image__thumbnail:hover {
   opacity: 1;
-  border-color: #4A90E2;
 }
 
 .product-image__thumbnail.active {
   opacity: 1;
-  border-color: #4A90E2;
 }
 
 .product-image__thumbnail img {
@@ -162,6 +163,8 @@
   color: #000;
   font-family: 'Helvetica', 'Arial', sans-serif;
   text-transform: lowercase;
+  position: relative;
+  padding-left: 12px;
 }
 
 .product-variant {
@@ -170,6 +173,7 @@
   margin: 0 0 8px;
   font-weight: 400;
   text-align: left;
+  padding-left: 12px;
 }
 
 .product-price {
@@ -177,7 +181,9 @@
   color: #000;
   margin: 0 0 4px;
   font-weight: 600;
-  text-align: left;
+  text-align: right;
+  padding-right: 12px;
+  position: relative;
 }
 
 .product-taxes {
@@ -185,7 +191,8 @@
   color: #666;
   margin: 0 0 24px;
   font-weight: 400;
-  text-align: left;
+  text-align: right;
+  padding-right: 12px;
 }
 
 .product-description {
@@ -193,7 +200,7 @@
   line-height: 1.6;
   color: #000;
   text-align: left;
-  padding-left: 0;
+  padding-left: 12px;
 }
 
 .product-description p {
@@ -381,15 +388,18 @@
   .product-title {
     font-size: 26px;
     margin-bottom: 16px;
+    padding-left: 12px;
   }
 
   .product-description {
     font-size: 15px;
+    padding-left: 12px;
   }
 
   .product-image__main {
-    height: 50vh;
-    min-height: 400px;
+    height: 60vh;
+    min-height: 500px;
+    aspect-ratio: 3/4;
   }
 
   .product-images__thumbnails {
@@ -397,7 +407,8 @@
   }
 
   .product-image__thumbnail {
-    height: 100px;
+    height: 130px;
+    aspect-ratio: 3/4;
   }
 }
 
@@ -417,10 +428,12 @@
 
   .product-title {
     font-size: 23.4px;
+    padding-left: 12px;
   }
 
   .product-description {
     font-size: 14px;
+    padding-left: 12px;
   }
 
   .custom-button,
@@ -430,8 +443,9 @@
   }
 
   .product-image__main {
-    height: 40vh;
-    min-height: 300px;
+    height: 50vh;
+    min-height: 400px;
+    aspect-ratio: 3/4;
   }
 
   .product-images__thumbnails {
@@ -439,7 +453,8 @@
   }
 
   .product-image__thumbnail {
-    height: 80px;
+    height: 100px;
+    aspect-ratio: 3/4;
   }
 
   .product-images__controls {
