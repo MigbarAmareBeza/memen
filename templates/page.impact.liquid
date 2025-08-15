@@ -1,5 +1,5 @@
 {% comment %}
-  Impact page template - fallback if JSON template doesn't work
+  Impact page template
 {% endcomment %}
 
 <div class="impact-page">
@@ -9,23 +9,19 @@
         <h1 class="impact-page__title">{{ page.title | default: 'Our Impact' }}</h1>
         
         <div class="impact-page__description">
-          {% if page.content != blank %}
-            {{ page.content }}
-          {% else %}
-            <p>At MEMEN, we believe fashion should be a force for good. Our commitment to sustainability and ethical practices drives every decision we make, from sourcing materials to supporting our community.</p>
-            
-            <h2>Sustainable Materials</h2>
-            <p>We carefully select eco-friendly fabrics and work with suppliers who share our values of environmental responsibility. Our pieces are designed to last, reducing waste and promoting mindful consumption.</p>
-            
-            <h2>Ethical Production</h2>
-            <p>Every garment is made with fair labor practices and living wages for all workers in our supply chain. We partner with manufacturers who prioritize worker welfare and maintain transparent operations.</p>
-            
-            <h2>Community Impact</h2>
-            <p>Through our partnerships with local organizations, we support educational initiatives and provide opportunities for skill development in underserved communities.</p>
-            
-            <h2>Carbon Footprint</h2>
-            <p>We're committed to reducing our environmental impact through carbon-neutral shipping, minimal packaging, and supporting renewable energy initiatives.</p>
-          {% endif %}
+          <p>At MEMEN, we believe fashion should be a force for good. Our commitment to sustainability and ethical practices drives every decision we make, from sourcing materials to supporting our community.</p>
+          
+          <h2>Sustainable Materials</h2>
+          <p>We carefully select eco-friendly fabrics and work with suppliers who share our values of environmental responsibility. Our pieces are designed to last, reducing waste and promoting mindful consumption.</p>
+          
+          <h2>Ethical Production</h2>
+          <p>Every garment is made with fair labor practices and living wages for all workers in our supply chain. We partner with manufacturers who prioritize worker welfare and maintain transparent operations.</p>
+          
+          <h2>Community Impact</h2>
+          <p>Through our partnerships with local organizations, we support educational initiatives and provide opportunities for skill development in underserved communities.</p>
+          
+          <h2>Carbon Footprint</h2>
+          <p>We're committed to reducing our environmental impact through carbon-neutral shipping, minimal packaging, and supporting renewable energy initiatives.</p>
         </div>
       </div>
       
