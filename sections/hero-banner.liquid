@@ -2,7 +2,7 @@
   Hero banner section for MEMEN homepage
 {% endcomment %}
 
-<section class="hero-banner">
+<section class="hero-banner full-width">
   <div class="hero-banner__images">
     <div class="hero-banner__image-left">
       {% if section.settings.hero_image_left %}
@@ -25,7 +25,6 @@
         {{ section.settings.hero_image_right | image_url: width: 800 | image_tag: loading: 'lazy', alt: 'MEMEN fall collection' }}
       {% endif %}
       <div class="hero-banner__text hero-banner__text--right">
-        <h1 class="hero-banner__title">MEMEN</h1>
         <p class="hero-banner__subtitle">
           01<br>
           <span class="hero-banner__indent">fall collection</span><br>
@@ -44,13 +43,16 @@
     padding: 0;
     min-height: 100vh;
     padding-top: 97px; /* Account for fixed header + announcement bar */
+    margin-left: 0;
   }
 
   .hero-banner__images {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* First image 1.5x bigger */
+    grid-template-columns: 1.7fr 1.3fr; /* Left image 1.7x, right image 1.3x */
     height: calc(100vh - 97px);
     gap: 20px; /* Add spacing between images */
+    margin-left: 0;
+    padding-left: 0;
   }
 
   .hero-banner__image-left,
@@ -60,7 +62,9 @@
   }
 
   .hero-banner__image-left {
-    margin-left: 0; /* Remove left padding so it touches margin */
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 0;
   }
 
   .hero-banner__image-left img,
@@ -94,6 +98,7 @@
     letter-spacing: -0.02em; /* Reduced letter spacing */
     margin: 0;
     color: #ffffff;
+    font-family: inherit; /* Keep default font for logo */
   }
 
   .hero-banner__subtitle {
@@ -103,6 +108,7 @@
     margin: 0;
     font-weight: 400;
     letter-spacing: -0.01em; /* Reduced letter spacing */
+    font-family: 'Realtime Rounded Test', sans-serif;
   }
 
   .hero-banner__indent {
@@ -115,6 +121,7 @@
     font-size: 11px; /* Smaller from 14px */
     letter-spacing: -0.01em; /* Reduced letter spacing */
     transition: opacity 0.2s ease;
+    font-family: 'Realtime Rounded Test', sans-serif;
   }
 
   .hero-banner__link a:hover {
