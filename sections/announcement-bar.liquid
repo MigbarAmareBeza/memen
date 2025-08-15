@@ -32,6 +32,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    gap: 15px;
   }
 
   .announcement-bar__text {
@@ -49,8 +50,6 @@
   }
 
   .announcement-bar__close {
-    position: absolute;
-    right: 20px;
     background: none;
     border: none;
     font-size: 16px;
@@ -62,10 +61,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .announcement-bar__close:hover {
-    opacity: 0.7;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
+    flex-shrink: 0;
   }
 
   @media (max-width: 768px) {
