@@ -1,7 +1,7 @@
 /* Product Page Styles - Based on Impact Page Design */
 
 .product-page {
-  padding: 40px 40px 10px;
+  padding: 120px 40px 10px;
   min-height: 100vh;
   background-color: #ffffff;
 }
@@ -16,14 +16,18 @@
   align-items: start;
 }
 
-/* Product Images */
+/* Product Images - Grid Layout */
 .product-images {
   position: sticky;
-  top: 40px;
+  top: 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 .product-images__main {
-  margin-bottom: 20px;
+  grid-column: 1 / -1;
+  margin-bottom: 0;
 }
 
 .product-image__main {
@@ -33,27 +37,26 @@
   border-radius: 8px;
 }
 
+.product-images__grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.product-image__grid-item {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 .product-images__thumbnails {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  display: none;
 }
 
 .product-image__thumbnail {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 4px;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-  border: 2px solid transparent;
-}
-
-.product-image__thumbnail.active,
-.product-image__thumbnail:hover {
-  opacity: 1;
-  border-color: #000;
+  display: none;
 }
 
 .product-image__placeholder {
@@ -145,28 +148,78 @@
   border-radius: 4px;
 }
 
-/* Custom Button Element */
+/* Custom Button Element with Crop Marks */
 .custom-button {
   display: inline-block;
   padding: 16px 32px;
   background-color: transparent;
   color: #000;
-  border: 1px solid #000;
+  border: none;
   font-size: 14px;
   font-family: 'Realtime Rounded Test', sans-serif;
   letter-spacing: 0.05em;
   text-transform: lowercase;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
-.custom-button:hover:not(:disabled) {
-  background-color: #000;
-  color: #fff;
+.custom-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* Top-left crop mark */
+.custom-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #4A90E2;
+  border-left: 2px solid #4A90E2;
+  pointer-events: none;
+}
+
+/* Additional crop marks using pseudo-elements on a wrapper */
+.custom-button {
+  background-image: 
+    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px);
+  background-position: 
+    0 0,
+    0 0,
+    100% 100%,
+    100% 100%,
+    100% 0,
+    100% 0,
+    0 100%,
+    0 100%;
+  background-repeat: no-repeat;
+  background-size: 
+    12px 2px,
+    2px 12px,
+    12px 2px,
+    2px 12px,
+    12px 2px,
+    2px 12px,
+    12px 2px,
+    2px 12px;
 }
 
 .custom-button:disabled {
@@ -174,37 +227,51 @@
   cursor: not-allowed;
 }
 
-.custom-button--filled {
-  background-color: #000;
-  color: #fff;
-}
-
-.custom-button--filled:hover:not(:disabled) {
-  background-color: #333;
-}
-
-/* Add to Cart Button */
+/* Add to Cart Button with same styling */
 .add-to-cart-btn {
   display: inline-block;
   padding: 16px 32px;
   background-color: transparent;
   color: #000;
-  border: 1px solid #000;
+  border: none;
   font-size: 14px;
   font-family: 'Realtime Rounded Test', sans-serif;
   letter-spacing: 0.05em;
   text-transform: lowercase;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-}
-
-.add-to-cart-btn:hover:not(:disabled) {
-  background-color: #000;
-  color: #fff;
+  position: relative;
+  background-image: 
+    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to right, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to bottom, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to left, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px),
+    linear-gradient(to top, #4A90E2 0, #4A90E2 2px, transparent 2px, transparent 12px);
+  background-position: 
+    0 0,
+    0 0,
+    100% 100%,
+    100% 100%,
+    100% 0,
+    100% 0,
+    0 100%,
+    0 100%;
+  background-repeat: no-repeat;
+  background-size: 
+    12px 2px,
+    2px 12px,
+    12px 2px,
+    2px 12px,
+    12px 2px,
+    2px 12px,
+    12px 2px,
+    2px 12px;
 }
 
 .add-to-cart-btn:disabled {
@@ -215,7 +282,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .product-page {
-    padding: 20px 20px 10px;
+    padding: 100px 20px 10px;
   }
 
   .product-layout {
@@ -234,16 +301,17 @@
 
   .product-images {
     position: static;
+    grid-template-columns: 1fr;
   }
 
-  .product-images__thumbnails {
-    justify-content: center;
+  .product-images__grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 480px) {
   .product-page {
-    padding: 20px 15px 10px;
+    padding: 80px 15px 10px;
   }
 
   .product-title {
@@ -258,5 +326,10 @@
   .add-to-cart-btn {
     padding: 14px 24px;
     font-size: 13px;
+  }
+
+  .product-images__grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 }

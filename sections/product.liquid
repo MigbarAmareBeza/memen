@@ -14,13 +14,12 @@
           />
         </div>
         {% if product.images.size > 1 %}
-          <div class="product-images__thumbnails">
-            {% for image in product.images %}
+          <div class="product-images__grid">
+            {% for image in product.images offset: 1 limit: 4 %}
               <img 
-                src="{{ image | image_url: width: 120 }}" 
+                src="{{ image | image_url: width: 300 }}" 
                 alt="{{ product.title }}"
-                class="product-image__thumbnail {% if forloop.first %}active{% endif %}"
-                data-image-index="{{ forloop.index0 }}"
+                class="product-image__grid-item"
               />
             {% endfor %}
           </div>
