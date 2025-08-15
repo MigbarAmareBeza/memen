@@ -9,7 +9,7 @@
 .product-layout {
   max-width: none;
   margin: 0;
-  padding: 0 40px 0 40px;
+  padding: 0;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 60px;
@@ -371,7 +371,7 @@
   .product-layout {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 0 20px;
+    padding: 0;
     display: block;
   }
 
@@ -418,7 +418,7 @@
   }
 
   .product-layout {
-    padding: 0 15px;
+    padding: 0;
     display: block;
   }
 
