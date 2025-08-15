@@ -57,12 +57,9 @@
           
           <div class="cart-actions">
             <button type="submit" name="update" class="update-cart-btn">update cart</button>
-            {% render 'custom-button',
-              text: 'checkout',
-              type: 'submit',
-              name: 'checkout',
-              class: 'checkout-btn'
-            %}
+            <div class="custom-button-wrapper">
+              <button type="submit" name="checkout" class="custom-button checkout-btn">checkout</button>
+            </div>
           </div>
         </div>
       </form>

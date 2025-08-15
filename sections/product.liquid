@@ -68,7 +68,7 @@
       </div>
 
       <div class="product-form">
-        {% form 'product', product %}
+        {% form 'product', product, class: 'product-form-ajax' %}
           {% assign current_variant = product.selected_or_first_available_variant %}
 
           {% if product.variants.size > 1 %}
@@ -90,12 +90,15 @@
           {% endif %}
 
           <div class="product-actions">
-            {% render 'custom-button',
-              text: current_variant.available ? 'add to cart' : 'sold out',
-              type: 'submit',
-              disabled: current_variant.available == false,
-              class: 'add-to-cart-btn'
-            %}
+            <div class="custom-button-wrapper">
+              <button 
+                type="submit" 
+                class="custom-button add-to-cart-btn"
+                {% unless current_variant.available %}disabled{% endunless %}
+              >
+                {{ current_variant.available ? 'add to cart' : 'sold out' }}
+              </button>
+            </div>
           </div>
         {% endform %}
       </div>
@@ -106,6 +109,70 @@
 {{ 'product-page.css' | asset_url | stylesheet_tag }}
 
 {{ 'product-gallery.js' | asset_url | script_tag }}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const productForm = document.querySelector('.product-form-ajax');
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    
+    if (productForm && addToCartBtn) {
+      productForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (addToCartBtn.disabled) return;
+        
+        // Update button state
+        const originalText = addToCartBtn.textContent;
+        addToCartBtn.textContent = 'adding...';
+        addToCartBtn.disabled = true;
+        
+        // Get form data
+        const formData = new FormData(productForm);
+        
+        // Add to cart via AJAX
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Success - update cart count in header
+          updateCartCount();
+          
+          // Reset button
+          addToCartBtn.textContent = 'added!';
+          
+          setTimeout(() => {
+            addToCartBtn.textContent = originalText;
+            addToCartBtn.disabled = false;
+          }, 1500);
+        })
+        .catch(error => {
+          console.error('Error adding to cart:', error);
+          
+          // Reset button on error
+          addToCartBtn.textContent = originalText;
+          addToCartBtn.disabled = false;
+        });
+      });
+    }
+    
+    // Function to update cart count in header
+    function updateCartCount() {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {
+          const cartLinks = document.querySelectorAll('a[href*="cart"]');
+          cartLinks.forEach(link => {
+            if (link.textContent.includes('CART')) {
+              link.textContent = `CART(${cart.item_count})`;
+            }
+          });
+        })
+        .catch(error => console.error('Error updating cart count:', error));
+    }
+  });
+</script>
 
 {% schema %}
 {
