@@ -6,29 +6,21 @@
   <div class="impact-page__container">
     <div class="impact-page__content">
       <div class="impact-page__text">
-        <h1 class="impact-page__title">{{ page.title | default: 'Our Impact' }}</h1>
+        <h1 class="impact-page__title">{{ page.title | default: 'impact' }}</h1>
         
         <div class="impact-page__description">
-          <p>At MEMEN, we believe fashion should be a force for good. Our commitment to sustainability and ethical practices drives every decision we make, from sourcing materials to supporting our community.</p>
+          <p>at memen, we believe in creating fashion that respects both people and the planet. our commitment to sustainability and ethical practices is woven into every aspect of our brand.</p>
           
-          <h2>Sustainable Materials</h2>
-          <p>We carefully select eco-friendly fabrics and work with suppliers who share our values of environmental responsibility. Our pieces are designed to last, reducing waste and promoting mindful consumption.</p>
+          <p>we work exclusively with suppliers who share our values of environmental responsibility and fair labor practices. our pieces are designed to last, reducing waste and promoting mindful consumption.</p>
           
-          <h2>Ethical Production</h2>
-          <p>Every garment is made with fair labor practices and living wages for all workers in our supply chain. We partner with manufacturers who prioritize worker welfare and maintain transparent operations.</p>
+          <p>through partnerships with local artisans and manufacturers, we support communities while ensuring transparent and ethical production processes.</p>
           
-          <h2>Community Impact</h2>
-          <p>Through our partnerships with local organizations, we support educational initiatives and provide opportunities for skill development in underserved communities.</p>
-          
-          <h2>Carbon Footprint</h2>
-          <p>We're committed to reducing our environmental impact through carbon-neutral shipping, minimal packaging, and supporting renewable energy initiatives.</p>
+          <p>our goal is to minimize our environmental footprint through sustainable materials, carbon-neutral shipping, and innovative packaging solutions.</p>
         </div>
       </div>
       
       <div class="impact-page__image">
-        <div class="impact-page__placeholder">
-          <p>Impact Image</p>
-        </div>
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MEMEN impact and sustainability" loading="lazy">
       </div>
     </div>
   </div>
@@ -36,35 +28,37 @@
 
 <style>
   .impact-page {
-    padding: 120px 0 80px;
+    padding: 120px 40px 80px;
     min-height: 100vh;
   }
 
   .impact-page__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0;
   }
 
   .impact-page__content {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
     align-items: start;
   }
 
   .impact-page__title {
-    font-size: 32px;
+    font-size: 31.2px;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.08em;
     margin: 0 0 40px;
     color: #000;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    text-transform: lowercase;
   }
 
   .impact-page__description {
     font-size: 16px;
     line-height: 1.6;
-    color: #333;
+    color: #000;
     font-family: 'Realtime Rounded Test', sans-serif;
   }
 
@@ -72,15 +66,8 @@
     margin: 0 0 24px;
   }
 
-  .impact-page__description h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 40px 0 16px;
-    color: #000;
-  }
-
-  .impact-page__description h2:first-of-type {
-    margin-top: 32px;
+  .impact-page__description p:last-child {
+    margin-bottom: 0;
   }
 
   .impact-page__image {
@@ -88,21 +75,15 @@
     top: 140px;
   }
 
-  .impact-page__placeholder {
+  .impact-page__image img {
     width: 100%;
-    height: 400px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    font-family: 'Realtime Rounded Test', sans-serif;
+    height: auto;
+    object-fit: cover;
   }
 
   @media (max-width: 768px) {
     .impact-page {
-      padding: 100px 0 60px;
+      padding: 100px 20px 60px;
     }
 
     .impact-page__content {
@@ -111,7 +92,7 @@
     }
 
     .impact-page__title {
-      font-size: 28px;
+      font-size: 26px;
       margin-bottom: 30px;
     }
 
@@ -125,12 +106,12 @@
   }
 
   @media (max-width: 480px) {
-    .impact-page__container {
-      padding: 0 15px;
+    .impact-page {
+      padding: 100px 15px 60px;
     }
 
     .impact-page__title {
-      font-size: 24px;
+      font-size: 23.4px;
     }
 
     .impact-page__description {
