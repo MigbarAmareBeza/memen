@@ -5,16 +5,40 @@
 <section class="product-page">
   <div class="product-layout">
     <div class="product-images">
-      {% if product.images.size > 1 %}
-        <div class="product-images__grid">
-          {% for image in product.images offset: 1 limit: 3 %}
-            <img 
-              src="{{ image | image_url: width: 600 }}" 
-              alt="{{ product.title }}"
-              class="product-image__grid-item"
-            />
-          {% endfor %}
+      {% if product.images.size > 0 %}
+        <div class="product-images__main">
+          <img 
+            src="{{ product.featured_image | image_url: width: 800 }}" 
+            alt="{{ product.title }}"
+            class="product-image__main"
+            id="main-product-image"
+          />
         </div>
+        {% if product.images.size > 1 %}
+          <div class="product-images__navigation">
+            <div class="product-images__thumbnails">
+              {% for image in product.images %}
+                <button 
+                  class="product-image__thumbnail {% if forloop.first %}active{% endif %}"
+                  data-image-src="{{ image | image_url: width: 800 }}"
+                  aria-label="View image {{ forloop.index }}"
+                >
+                  <img 
+                    src="{{ image | image_url: width: 120 }}" 
+                    alt="{{ product.title }} - Image {{ forloop.index }}"
+                  />
+                </button>
+              {% endfor %}
+            </div>
+            <div class="product-images__controls">
+              <button class="image-nav__prev" aria-label="Previous image">‹</button>
+              <span class="image-nav__counter">
+                <span class="current-image">1</span> / {{ product.images.size }}
+              </span>
+              <button class="image-nav__next" aria-label="Next image">›</button>
+            </div>
+          </div>
+        {% endif %}
       {% else %}
         <div class="product-image__placeholder">
           <div class="product-image__placeholder-corner"></div>
