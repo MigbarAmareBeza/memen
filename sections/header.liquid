@@ -1,7 +1,5 @@
 <header class="header">
   <nav class="header__nav">
-    <a href="{{ routes.root_url }}" class="header__logo">MEMEN</a>
-    
     <div class="header__menu">
       <a href="{{ routes.root_url }}" class="header__link">SHOP</a>
       <a href="#" class="header__link">CAMPAIGNS</a>
@@ -29,20 +27,13 @@
 
   .header__nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px 0 5px;
   }
 
-  .header__logo {
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    color: #000;
-    text-decoration: none;
-  }
 
   .header__menu {
     display: flex;
@@ -77,7 +68,7 @@
 
   @media (max-width: 480px) {
     .header__nav {
-      padding: 0 15px;
+      padding: 0 15px 0 5px;
     }
     
     .header__menu {
