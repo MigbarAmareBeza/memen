@@ -1,33 +1,381 @@
 {% comment %}
-  This section is used in the cart template to render /cart page with an
-  overview of the items in customer's cart.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/cart
+  Modern cart page for MEMEN store
 {% endcomment %}
 
-<h1>{{ 'cart.title' | t }}</h1>
+<section class="cart-page">
+  {% if cart.item_count > 0 %}
+    <div class="cart-container">
+      <h1 class="cart-title">cart</h1>
+      
+      <form action="{{ routes.cart_url }}" method="post" class="cart-form">
+        <div class="cart-items">
+          {% for item in cart.items %}
+            <div class="cart-item">
+              <div class="cart-item__image">
+                {% if item.image %}
+                  <img 
+                    src="{{ item.image | image_url: width: 120 }}" 
+                    alt="{{ item.product.title }}"
+                    loading="lazy"
+                  />
+                {% endif %}
+              </div>
+              
+              <div class="cart-item__details">
+                <h3 class="cart-item__title">{{ item.product.title }}</h3>
+                <p class="cart-item__variant">{{ item.variant.title }}</p>
+                <p class="cart-item__price">{{ item.final_price | money }}</p>
+              </div>
+              
+              <div class="cart-item__quantity">
+                <div class="quantity-selector">
+                  <button type="button" class="quantity-btn quantity-decrease" data-line="{{ forloop.index }}">−</button>
+                  <input 
+                    type="number" 
+                    name="updates[]" 
+                    value="{{ item.quantity }}" 
+                    min="0"
+                    class="quantity-input"
+                    data-line="{{ forloop.index }}"
+                  />
+                  <button type="button" class="quantity-btn quantity-increase" data-line="{{ forloop.index }}">+</button>
+                </div>
+              </div>
+              
+              <div class="cart-item__remove">
+                <a href="{{ item.url_to_remove }}" class="remove-link" aria-label="Remove {{ item.product.title }}">×</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+        <div class="cart-summary">
+          <div class="cart-total">
+            <span class="total-label">total</span>
+            <span class="total-price">{{ cart.total_price | money }}</span>
+          </div>
+          
+          <div class="cart-actions">
+            <button type="submit" name="update" class="update-cart-btn">update cart</button>
+            {% render 'custom-button',
+              text: 'checkout',
+              type: 'submit',
+              name: 'checkout',
+              class: 'checkout-btn'
+            %}
+          </div>
+        </div>
+      </form>
+    </div>
+  {% else %}
+    <div class="empty-cart">
+      <h1 class="cart-title">cart</h1>
+      <p class="empty-message">your cart is empty</p>
+      <a href="/collections/all" class="continue-shopping">continue shopping</a>
+    </div>
+  {% endif %}
+</section>
 
-<form action="{{ routes.cart_url }}" method="post">
-  <table>
-    {% for item in cart.items %}
-      <tr>
-        <td>
-          {% render 'image', image: item.image, url: item.url %}
-        </td>
-        <td>
-          <p>{{ item.product.title }}</p>
-          {{ 'cart.remove' | t | link_to: item.url_to_remove }}
-        </td>
-        <td>
-          <input type="text" name="updates[]" value="{{ item.quantity }}">
-          <input type="submit" value="{{ 'cart.update' | t }}">
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
+{% stylesheet %}
+  .cart-page {
+    padding: 120px 0 60px;
+    min-height: 100vh;
+    background-color: #ffffff;
+  }
 
-  <input type="submit" name="checkout" value="{{ 'cart.checkout' | t }}">
-</form>
+  .cart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .cart-title {
+    font-size: 31.2px;
+    font-weight: 700;
+    letter-spacing: -0.08em;
+    margin: 0 0 40px 12px;
+    color: #000;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    text-transform: lowercase;
+  }
+
+  .cart-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cart-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto auto;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .cart-item__image {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+  }
+
+  .cart-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cart-item__details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cart-item__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    text-transform: lowercase;
+  }
+
+  .cart-item__variant {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .cart-item__price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .cart-item__quantity {
+    display: flex;
+    align-items: center;
+  }
+
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .quantity-btn {
+    background: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    transition: background-color 0.2s ease;
+  }
+
+  .quantity-btn:hover {
+    background-color: #f5f5f5;
+  }
+
+  .quantity-input {
+    border: none;
+    padding: 8px 12px;
+    width: 60px;
+    text-align: center;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    font-size: 14px;
+    background: #fff;
+  }
+
+  .quantity-input:focus {
+    outline: none;
+  }
+
+  .cart-item__remove {
+    display: flex;
+    align-items: center;
+  }
+
+  .remove-link {
+    color: #999;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 8px;
+    transition: color 0.2s ease;
+  }
+
+  .remove-link:hover {
+    color: #666;
+  }
+
+  .cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 12px;
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 2px solid #000;
+  }
+
+  .total-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    text-transform: lowercase;
+  }
+
+  .total-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .cart-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .update-cart-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    text-transform: lowercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .update-cart-btn:hover {
+    border-color: #4A90E2;
+    color: #4A90E2;
+  }
+
+  .checkout-btn {
+    margin-left: auto;
+  }
+
+  /* Empty Cart */
+  .empty-cart {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .empty-message {
+    font-size: 16px;
+    color: #666;
+    margin: 40px 0;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .continue-shopping {
+    color: #4A90E2;
+    text-decoration: none;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    font-size: 14px;
+    text-transform: lowercase;
+    transition: opacity 0.2s ease;
+  }
+
+  .continue-shopping:hover {
+    opacity: 0.7;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .cart-page {
+      padding: 100px 0 40px;
+    }
+
+    .cart-container {
+      padding: 0 15px;
+    }
+
+    .cart-title {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+
+    .cart-item {
+      grid-template-columns: 80px 1fr;
+      grid-template-rows: auto auto;
+      gap: 15px;
+    }
+
+    .cart-item__image {
+      width: 80px;
+      height: 80px;
+    }
+
+    .cart-item__quantity {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .cart-item__remove {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: end;
+    }
+
+    .cart-actions {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .checkout-btn {
+      margin-left: 0;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const quantityButtons = document.querySelectorAll('.quantity-btn');
+    
+    quantityButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const line = this.dataset.line;
+        const input = document.querySelector(`input[data-line="${line}"]`);
+        const currentValue = parseInt(input.value);
+        
+        if (this.classList.contains('quantity-increase')) {
+          input.value = currentValue + 1;
+        } else if (this.classList.contains('quantity-decrease') && currentValue > 0) {
+          input.value = currentValue - 1;
+        }
+        
+        // Auto-submit form after quantity change
+        setTimeout(() => {
+          input.closest('form').submit();
+        }, 300);
+      });
+    });
+  });
+</script>
 
 {% schema %}
 {
