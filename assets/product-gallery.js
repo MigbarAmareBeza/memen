@@ -59,16 +59,19 @@ class ProductGallery {
       this.mainImage.style.opacity = '1';
     }, 150);
     
-    // Update active thumbnail
+    // Update active thumbnail (only if not on main image)
     this.thumbnails.forEach(thumb => thumb.classList.remove('active'));
-    this.thumbnails[index].classList.add('active');
+    if (index > 0 && this.thumbnails[index - 1]) {
+      this.thumbnails[index - 1].classList.add('active');
+    }
     
-    // Update counter and navigation state
-    this.updateCounter();
+    // Update navigation state
     this.updateNavigationState();
     
     // Scroll thumbnail into view
-    this.scrollThumbnailIntoView(index);
+    if (index > 0) {
+      this.scrollThumbnailIntoView(index - 1);
+    }
   }
   
   previousImage() {
@@ -83,11 +86,6 @@ class ProductGallery {
     }
   }
   
-  updateCounter() {
-    if (this.currentImageSpan) {
-      this.currentImageSpan.textContent = this.currentIndex + 1;
-    }
-  }
   
   updateNavigationState() {
     if (this.prevButton) {

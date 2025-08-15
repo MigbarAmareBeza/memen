@@ -17,24 +17,21 @@
         {% if product.images.size > 1 %}
           <div class="product-images__navigation">
             <div class="product-images__thumbnails">
-              {% for image in product.images %}
+              {% for image in product.images offset: 1 %}
                 <button 
                   class="product-image__thumbnail {% if forloop.first %}active{% endif %}"
                   data-image-src="{{ image | image_url: width: 800 }}"
-                  aria-label="View image {{ forloop.index }}"
+                  aria-label="View image {{ forloop.index | plus: 1 }}"
                 >
                   <img 
                     src="{{ image | image_url: width: 120 }}" 
-                    alt="{{ product.title }} - Image {{ forloop.index }}"
+                    alt="{{ product.title }} - Image {{ forloop.index | plus: 1 }}"
                   />
                 </button>
               {% endfor %}
             </div>
             <div class="product-images__controls">
               <button class="image-nav__prev" aria-label="Previous image">‹</button>
-              <span class="image-nav__counter">
-                <span class="current-image">1</span> / {{ product.images.size }}
-              </span>
               <button class="image-nav__next" aria-label="Next image">›</button>
             </div>
           </div>
