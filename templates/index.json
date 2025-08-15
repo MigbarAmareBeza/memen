@@ -19,7 +19,7 @@
     "products": {
       "type": "product-grid",
       "settings": {
-        "collection": "",
+        "collection": "all",
         "products_to_show": 4
       }
     }
