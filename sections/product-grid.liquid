@@ -28,16 +28,23 @@
         </div>
       {% endfor %}
     {% else %}
-      {% # Demo products when no collection is selected %}
+      {% # Demo products - use actual Mila bag product if available %}
+      {% assign mila_bag = all_products['mila-bag'] %}
       {% for i in (1..4) %}
         <div class="product-card">
           <div class="product-card__image-container">
-            <div class="product-card__placeholder"></div>
+            {% if mila_bag.featured_image %}
+              <a href="/products/mila-bag">
+                {{ mila_bag.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: mila_bag.title, class: 'product-card__image' }}
+              </a>
+            {% else %}
+              <div class="product-card__placeholder"></div>
+            {% endif %}
           </div>
           
           <div class="product-card__info">
             <h3 class="product-card__title">
-              <a href="/products/mila-bag">mila bag</a>
+              <a href="/products/mila-bag">{% if mila_bag %}{{ mila_bag.title }}{% else %}mila bag{% endif %}</a>
             </h3>
             <div class="product-card__details">
               <p class="product-card__variant">
@@ -48,7 +55,7 @@
                   {% when 4 %}black, nubuck, hs code 41
                 {% endcase %}
               </p>
-              <p class="product-card__price">$425.00</p>
+              <p class="product-card__price">{% if mila_bag %}{{ mila_bag.price | money }}{% else %}$425.00{% endif %}</p>
             </div>
           </div>
         </div>
@@ -85,48 +92,48 @@
   .product-card__image-container::before {
     content: '';
     position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 12px;
-    height: 12px;
-    border-top: 1px solid rgba(0, 0, 0, 0.3);
-    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    top: 10px;
+    left: 10px;
+    width: 16px;
+    height: 16px;
+    border-top: 2px solid rgba(0, 0, 0, 0.8);
+    border-left: 2px solid rgba(0, 0, 0, 0.8);
     z-index: 2;
   }
 
   .product-card__image-container::after {
     content: '';
     position: absolute;
-    bottom: 8px;
-    right: 8px;
-    width: 12px;
-    height: 12px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    bottom: 10px;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+    border-right: 2px solid rgba(0, 0, 0, 0.8);
     z-index: 2;
   }
 
-  .product-card__image:before {
+  .product-card__image-container:before {
     content: '';
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 12px;
-    height: 12px;
-    border-top: 1px solid rgba(0, 0, 0, 0.3);
-    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    top: 10px;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    border-top: 2px solid rgba(0, 0, 0, 0.8);
+    border-right: 2px solid rgba(0, 0, 0, 0.8);
     z-index: 2;
   }
 
-  .product-card__image:after {
+  .product-card__image-container:after {
     content: '';
     position: absolute;
-    bottom: 8px;
-    left: 8px;
-    width: 12px;
-    height: 12px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    bottom: 10px;
+    left: 10px;
+    width: 16px;
+    height: 16px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+    border-left: 2px solid rgba(0, 0, 0, 0.8);
     z-index: 2;
   }
 
