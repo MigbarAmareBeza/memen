@@ -1,18 +1,18 @@
 /* Product Page Styles - Based on Impact Page Design */
 
 .product-page {
-  padding: 120px 40px 10px;
+  padding: 120px 0 10px;
   min-height: 100vh;
   background-color: #ffffff;
 }
 
 .product-layout {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0 40px 0 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
   align-items: start;
 }
 
@@ -40,8 +40,9 @@
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 10px;
-  height: 80vh;
-  min-height: 700px;
+  height: 85vh;
+  min-height: 750px;
+  padding-left: 40px;
 }
 
 .product-image__grid-item {
@@ -164,7 +165,7 @@
 /* Custom Button Element with Clean Crop Marks */
 .custom-button {
   display: inline-block;
-  padding: 12px 32px;
+  padding: 8px 32px;
   background-color: transparent;
   color: #000;
   border: none;
@@ -248,7 +249,7 @@
 /* Add to Cart Button with same styling */
 .add-to-cart-btn {
   display: inline-block;
-  padding: 12px 32px;
+  padding: 8px 32px;
   background-color: transparent;
   color: #000;
   border: none;
@@ -298,12 +299,21 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .product-page {
-    padding: 100px 20px 10px;
+    padding: 100px 0 10px;
   }
 
   .product-layout {
     grid-template-columns: 1fr;
     gap: 40px;
+    padding: 0 20px 0 0;
+  }
+
+  .product-layout .product-images {
+    order: 1;
+  }
+
+  .product-layout .product-details {
+    order: 2;
   }
 
   .product-title {
@@ -324,12 +334,17 @@
     grid-template-columns: 1fr 1fr;
     height: 60vh;
     min-height: 500px;
+    padding-left: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .product-page {
-    padding: 80px 15px 10px;
+    padding: 80px 0 10px;
+  }
+
+  .product-layout {
+    padding: 0 15px 0 0;
   }
 
   .product-title {
@@ -342,7 +357,7 @@
 
   .custom-button,
   .add-to-cart-btn {
-    padding: 10px 24px;
+    padding: 6px 24px;
     font-size: 13px;
   }
 
@@ -351,5 +366,6 @@
     gap: 15px;
     height: 50vh;
     min-height: 400px;
+    padding-left: 15px;
   }
 }
