@@ -9,7 +9,7 @@
         {{ section.settings.hero_image_left | image_url: width: 800 | image_tag: loading: 'lazy', alt: 'MEMEN fall collection' }}
       {% endif %}
       <div class="hero-banner__text hero-banner__text--left">
-        <h1 class="hero-banner__title">MEMEN</h1>
+        <h1 class="hero-banner__title">memen</h1>
         <p class="hero-banner__subtitle">
           01<br>
           <span class="hero-banner__indent">fall collection</span><br>
@@ -99,10 +99,11 @@
   .hero-banner__title {
     font-size: 24px; /* Smaller from 32px */
     font-weight: 700;
-    letter-spacing: -0.02em; /* Reduced letter spacing */
+    letter-spacing: -0.08em; /* Much tighter letter spacing */
     margin: 0;
     color: #ffffff;
-    font-family: inherit; /* Keep default font for logo */
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    text-transform: lowercase;
   }
 
   .hero-banner__subtitle {
