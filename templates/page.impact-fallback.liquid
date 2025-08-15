@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact - MEMEN</title>
+  <link rel="stylesheet" href="{{ 'realtime-rounded-fonts.css' | asset_url }}">
+</head>
+<body>
+  {% sections 'header-group' %}
+  
+  <div class="impact-page">
+    <div class="impact-page__container">
+      <div class="impact-page__content">
+        <div class="impact-page__text">
+          <h1 class="impact-page__title">impact</h1>
+          
+          <div class="impact-page__description">
+            <p>at memen, we believe in creating fashion that respects both people and the planet. our commitment to sustainability and ethical practices is woven into every aspect of our brand.</p>
+            
+            <p>we work exclusively with suppliers who share our values of environmental responsibility and fair labor practices. our pieces are designed to last, reducing waste and promoting mindful consumption.</p>
+            
+            <p>through partnerships with local artisans and manufacturers, we support communities while ensuring transparent and ethical production processes.</p>
+            
+            <p>our goal is to minimize our environmental footprint through sustainable materials, carbon-neutral shipping, and innovative packaging solutions.</p>
+          </div>
+        </div>
+        
+        <div class="impact-page__image">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MEMEN impact and sustainability" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% sections 'footer-group' %}
+
+  <style>
+    .impact-page {
+      padding: 120px 40px 80px;
+      min-height: 100vh;
+    }
+
+    .impact-page__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .impact-page__content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .impact-page__title {
+      font-size: 31.2px;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      margin: 0 0 40px;
+      color: #000;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      text-transform: lowercase;
+    }
+
+    .impact-page__description {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #000;
+      font-family: 'Realtime Rounded Test', sans-serif;
+    }
+
+    .impact-page__description p {
+      margin: 0 0 24px;
+    }
+
+    .impact-page__description p:last-child {
+      margin-bottom: 0;
+    }
+
+    .impact-page__image {
+      position: sticky;
+      top: 140px;
+    }
+
+    .impact-page__image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .impact-page {
+        padding: 100px 20px 60px;
+      }
+
+      .impact-page__content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .impact-page__title {
+        font-size: 26px;
+        margin-bottom: 30px;
+      }
+
+      .impact-page__description {
+        font-size: 15px;
+      }
+
+      .impact-page__image {
+        position: static;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .impact-page {
+        padding: 100px 15px 60px;
+      }
+
+      .impact-page__title {
+        font-size: 23.4px;
+      }
+
+      .impact-page__description {
+        font-size: 14px;
+      }
+    }
+  </style>
+</body>
+</html>
