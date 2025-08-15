@@ -20,8 +20,10 @@
             <h3 class="product-card__title">
               <a href="{{ product.url }}">{{ product.title }}</a>
             </h3>
-            <p class="product-card__variant">{{ product.selected_or_first_available_variant.title }}</p>
-            <p class="product-card__price">{{ product.price | money }}</p>
+            <div class="product-card__details">
+              <p class="product-card__variant">{{ product.selected_or_first_available_variant.title }}</p>
+              <p class="product-card__price">{{ product.price | money }}</p>
+            </div>
           </div>
         </div>
       {% endfor %}
@@ -37,15 +39,17 @@
             <h3 class="product-card__title">
               <a href="#">mila bag</a>
             </h3>
-            <p class="product-card__variant">
-              {% case i %}
-                {% when 1 %}blue, nubuck, hs code 41
-                {% when 2 %}gray, nubuck, hs code 41
-                {% when 3 %}brown, nubuck, hs code 41
-                {% when 4 %}black, nubuck, hs code 41
-              {% endcase %}
-            </p>
-            <p class="product-card__price">$425.00</p>
+            <div class="product-card__details">
+              <p class="product-card__variant">
+                {% case i %}
+                  {% when 1 %}blue, nubuck, hs code 41
+                  {% when 2 %}gray, nubuck, hs code 41
+                  {% when 3 %}brown, nubuck, hs code 41
+                  {% when 4 %}black, nubuck, hs code 41
+                {% endcase %}
+              </p>
+              <p class="product-card__price">$425.00</p>
+            </div>
           </div>
         </div>
       {% endfor %}
@@ -102,6 +106,30 @@
     z-index: 2;
   }
 
+  .product-card__image-container:before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    z-index: 2;
+  }
+
+  .product-card__image-container:after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+    z-index: 2;
+  }
+
   .product-card__image {
     width: 100%;
     height: 100%;
@@ -121,9 +149,9 @@
   }
 
   .product-card__title {
-    margin: 0 0 4px 0;
-    font-size: 14px;
-    font-weight: 400;
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    font-weight: 700;
     letter-spacing: -0.01em;
     font-family: 'Realtime Rounded Test', sans-serif;
   }
@@ -138,21 +166,29 @@
     opacity: 0.7;
   }
 
+  .product-card__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
   .product-card__variant {
-    margin: 0 0 6px 0;
-    font-size: 11px;
+    margin: 0;
+    font-size: 12px;
     color: #666;
     font-weight: 400;
     line-height: 1.3;
     font-family: 'Realtime Rounded Test', sans-serif;
+    flex: 1;
   }
 
   .product-card__price {
     margin: 0;
-    font-size: 14px;
+    font-size: 11px;
     color: #000;
     font-weight: 400;
     font-family: 'Realtime Rounded Test', sans-serif;
+    flex-shrink: 0;
   }
 
   @media (max-width: 768px) {
