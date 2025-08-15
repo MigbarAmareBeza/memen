@@ -3,7 +3,7 @@
 {% endcomment %}
 
 {% if section.settings.announcement_text != blank %}
-  <div class="announcement-bar">
+  <div class="announcement-bar" id="announcement-bar">
     <div class="announcement-bar__content">
       <p class="announcement-bar__text">{{ section.settings.announcement_text }}</p>
       {% if section.settings.show_close_button %}
@@ -20,8 +20,16 @@
     background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;
     padding: 8px 0;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 101;
+    transition: transform 0.3s ease;
+  }
+
+  .announcement-bar.hidden {
+    transform: translateY(-100%);
   }
 
   .announcement-bar__content {
@@ -74,6 +82,44 @@
     }
   }
 {% endstylesheet %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const announcementBar = document.getElementById('announcement-bar');
+    const header = document.querySelector('.header');
+    let lastScrollY = window.scrollY;
+    let announcementBarHeight = 0;
+
+    if (announcementBar) {
+      announcementBarHeight = announcementBar.offsetHeight;
+    }
+
+    function updateHeaderPosition() {
+      const scrollY = window.scrollY;
+      
+      if (announcementBar) {
+        if (scrollY > 50) {
+          announcementBar.classList.add('hidden');
+          if (header) {
+            header.style.top = '0px';
+          }
+        } else {
+          announcementBar.classList.remove('hidden');
+          if (header) {
+            header.style.top = announcementBarHeight + 'px';
+          }
+        }
+      }
+      
+      lastScrollY = scrollY;
+    }
+
+    window.addEventListener('scroll', updateHeaderPosition);
+    
+    // Initial setup
+    updateHeaderPosition();
+  });
+</script>
 
 {% schema %}
 {
