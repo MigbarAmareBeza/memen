@@ -1,0 +1,288 @@
+{% comment %}
+  Customer account page template
+{% endcomment %}
+
+<section class="account-page">
+  <div class="account-container">
+    <h1 class="account-title">my account</h1>
+    
+    <div class="account-content">
+      <div class="account-info">
+        <div class="info-section">
+          <h2 class="section-title">account details</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">name:</span>
+              <span class="info-value">{{ customer.first_name }} {{ customer.last_name }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">email:</span>
+              <span class="info-value">{{ customer.email }}</span>
+            </div>
+          </div>
+          <a href="{{ routes.account_addresses_url }}" class="edit-link">manage addresses</a>
+        </div>
+        
+        <div class="info-section">
+          <h2 class="section-title">order history</h2>
+          {% if customer.orders.size > 0 %}
+            <div class="orders-list">
+              {% for order in customer.orders limit: 5 %}
+                <div class="order-item">
+                  <div class="order-header">
+                    <span class="order-number">order #{{ order.name }}</span>
+                    <span class="order-date">{{ order.created_at | date: "%B %d, %Y" }}</span>
+                  </div>
+                  <div class="order-details">
+                    <span class="order-status">{{ order.fulfillment_status | default: "pending" }}</span>
+                    <span class="order-total">{{ order.total_price | money }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            {% if customer.orders.size > 5 %}
+              <a href="{{ routes.account_url }}/orders" class="view-all-link">view all orders</a>
+            {% endif %}
+          {% else %}
+            <p class="no-orders">you haven't placed any orders yet.</p>
+            <a href="/collections/all" class="shop-link">start shopping</a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="account-actions">
+        <div class="action-buttons">
+          <div class="custom-button-wrapper">
+            <a href="{{ routes.account_addresses_url }}" class="custom-button">manage addresses</a>
+          </div>
+          
+          <div class="custom-button-wrapper">
+            <a href="{{ routes.account_logout_url }}" class="custom-button logout-btn">sign out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .account-page {
+    padding: 120px 0 60px;
+    min-height: 100vh;
+    background-color: #ffffff;
+  }
+
+  .account-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .account-title {
+    font-size: 31.2px;
+    font-weight: 700;
+    letter-spacing: -0.08em;
+    margin: 0 0 40px 12px;
+    color: #000;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    text-transform: lowercase;
+  }
+
+  .account-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    padding: 0 12px;
+  }
+
+  .account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .info-section {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 30px;
+  }
+
+  .info-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    text-transform: lowercase;
+    margin: 0 0 20px 0;
+  }
+
+  .info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .info-label {
+    font-size: 14px;
+    color: #666;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    min-width: 60px;
+  }
+
+  .info-value {
+    font-size: 14px;
+    color: #000;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .edit-link {
+    color: #4A90E2;
+    text-decoration: none;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    font-size: 12px;
+    text-transform: lowercase;
+    transition: opacity 0.2s ease;
+  }
+
+  .edit-link:hover {
+    opacity: 0.7;
+  }
+
+  .orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .order-item {
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    padding: 16px;
+  }
+
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .order-number {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .order-date {
+    font-size: 12px;
+    color: #666;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .order-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .order-status {
+    font-size: 12px;
+    color: #666;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    text-transform: lowercase;
+  }
+
+  .order-total {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .view-all-link,
+  .shop-link {
+    color: #4A90E2;
+    text-decoration: none;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    font-size: 12px;
+    text-transform: lowercase;
+    transition: opacity 0.2s ease;
+  }
+
+  .view-all-link:hover,
+  .shop-link:hover {
+    opacity: 0.7;
+  }
+
+  .no-orders {
+    font-size: 14px;
+    color: #666;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    margin: 0 0 16px 0;
+  }
+
+  .account-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .custom-button-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logout-btn {
+    color: #d32f2f;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .account-page {
+      padding: 100px 0 40px;
+    }
+
+    .account-container {
+      padding: 0 15px;
+    }
+
+    .account-title {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+
+    .account-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .order-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .order-details {
+      margin-top: 8px;
+    }
+  }
+{% endstylesheet %}

@@ -8,6 +8,12 @@
       <a href="{{ routes.cart_url }}" class="header__link">
         CART({{ cart.item_count }})
       </a>
+      {% if customer %}
+        <a href="{{ routes.account_url }}" class="header__link">ACCOUNT</a>
+        <a href="{{ routes.account_logout_url }}" class="header__link">SIGN OUT</a>
+      {% else %}
+        <a href="{{ routes.account_login_url }}" class="header__link">SIGN IN</a>
+      {% endif %}
     </div>
   </nav>
 </header>
