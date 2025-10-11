@@ -93,11 +93,14 @@
             <div class="custom-button-wrapper">
               <button 
                 type="submit" 
-                name="add to cart"
                 class="custom-button add-to-cart-btn"
                 {% unless current_variant.available %}disabled{% endunless %}
               >
-                {{ current_variant.available ? 'add to cart' : 'sold out' }}
+                {% if current_variant.available %}
+                  add to cart
+                {% else %}
+                  sold out
+                {% endif %}
               </button>
             </div>
           </div>
