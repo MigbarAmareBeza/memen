@@ -52,6 +52,14 @@
   </div>
 </div>
 
+<footer class="footer">
+  <div class="footer__content">
+    <a href="{{ pages['policy'].url }}" class="footer__link" rel="noopener">
+      {{ 'Policies' | escape }}
+    </a>
+  </div>
+</footer>
+
 {% stylesheet %}
   .welcome {
     display: grid;
@@ -126,6 +134,53 @@
     border-radius: 4px;
     color: rgb(92, 95, 98);
     padding: 3px 10px 5px;
+    text-decoration: none;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 0 16px;
+    background: #f6f6f7;
+  }
+  .footer__content {
+    display: flex;
+    gap: 24px;
+  }
+  .footer__link {
+    font-size: 14px;
+    color: #5c5f62;
+    text-decoration: underline;
+    font-family: inherit;
+    transition: color 0.2s;
+  }
+  .footer__link:hover {
+    color: #202223;
+  }
+
+  .menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    min-height: 56px;
+  }
+  .menu-bar__left {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .menu-bar__right {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .menu-bar__icon {
+    font-weight: 500;
+    color: #202223;
     text-decoration: none;
   }
 {% endstylesheet %}
