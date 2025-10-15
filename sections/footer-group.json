@@ -13,8 +13,9 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "custom_css": [],
       "settings": {
-        "menu": "",
+        "menu": "main-menu",
         "show_payment_icons": true
       }
     }
