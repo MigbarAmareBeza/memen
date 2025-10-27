@@ -1,81 +1,440 @@
 <footer class="footer">
-  <div class="footer__content">
-    <div class="footer__links">
-      <a href="#" class="footer__link">ABOUT</a>
-      <a href="#" class="footer__link">VALUES</a>
-      <a href="#" class="footer__link">CONTACT</a>
-      <a href="#" class="footer__link">POLICIES</a>
-      <a href="#" class="footer__link">STOCKLIST</a>
-      <a href="#" class="footer__link">INSTAGRAM</a>
+  <!-- Decorative border pattern -->
+  <div class="footer__border-pattern"></div>
+  
+  <!-- Main footer content -->
+  <div class="footer__main">
+    <div class="footer__hero">
+      <h2 class="footer__hero-title">100% made with love and care in Africa</h2>
+      <p class="footer__hero-description">
+        At lemlem, we're committed to building a strong, fair and sustainable fashion industry in Africa, with 
+        a production that values and upholds artisans, their craftsmanship and their communities.
+      </p>
+      <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="footer__learn-more">LEARN MORE</a>
     </div>
     
-    <div class="footer__copyright">
-      <p>&copy; 2025 All rights reserved.</p>
+    <!-- Values icons -->
+    <div class="footer__values">
+      <div class="footer__value">
+        <div class="footer__value-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 2C10.05 2 2 10.05 2 20C2 29.95 10.05 38 20 38C29.95 38 38 29.95 38 20C38 10.05 29.95 2 20 2Z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="footer__value-label">Made In<br>Africa</span>
+      </div>
+      
+      <div class="footer__value">
+        <div class="footer__value-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 5L25 15H35L27.5 22.5L30 32.5L20 27.5L10 32.5L12.5 22.5L5 15H15L20 5Z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="footer__value-label">Eco-<br>Friendly</span>
+      </div>
+      
+      <div class="footer__value">
+        <div class="footer__value-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M8 8H32V32H8V8ZM12 12V28M16 12V28M20 12V28M24 12V28M28 12V28" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="footer__value-label">Hand-<br>woven in<br>Ethiopia</span>
+      </div>
+      
+      <div class="footer__value">
+        <div class="footer__value-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M12 8L20 2L28 8V20L20 38L12 20V8Z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="footer__value-label">Upcycling</span>
+      </div>
+      
+      <div class="footer__value">
+        <div class="footer__value-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 5C12.5 5 6.5 11 6.5 18.5C6.5 26 12.5 32 20 32C27.5 32 33.5 26 33.5 18.5C33.5 11 27.5 5 20 5ZM20 28C14.5 28 10 23.5 10 18.5C10 13.5 14.5 9 20 9C25.5 9 30 13.5 30 18.5C30 23.5 25.5 28 20 28Z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="footer__value-label">Giving Back</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer links section -->
+  <div class="footer__links-section">
+    <div class="footer__links-grid">
+      <div class="footer__links-column">
+        <h3 class="footer__column-title">DISCOVER</h3>
+        <ul class="footer__links-list">
+          <li><a href="#" class="footer__link">Our Story</a></li>
+          <li><a href="#" class="footer__link">Our Craftsmanship</a></li>
+          <li><a href="#" class="footer__link">Our Approach</a></li>
+          <li><a href="#" class="footer__link">Our Foundation</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer__links-column">
+        <h3 class="footer__column-title">SHOP</h3>
+        <ul class="footer__links-list">
+          <li><a href="{{ collections.all.url }}" class="footer__link">Shop All</a></li>
+          <li><a href="#" class="footer__link">Ready to Wear</a></li>
+          <li><a href="#" class="footer__link">Swimwear</a></li>
+          <li><a href="#" class="footer__link">Sale</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer__links-column">
+        <h3 class="footer__column-title">CUSTOMER CARE</h3>
+        <ul class="footer__links-list">
+          <li><a href="#" class="footer__link">Contact Us</a></li>
+          <li><a href="#" class="footer__link">Orders & Shipping</a></li>
+          <li><a href="#" class="footer__link">Returns & Exchanges</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer__links-column">
+        <h3 class="footer__column-title">MY ACCOUNT</h3>
+        <ul class="footer__links-list">
+          <li><a href="{{ routes.account_url }}" class="footer__link">Register</a></li>
+          <li><a href="{{ routes.account_login_url }}" class="footer__link">Log In</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer__newsletter">
+        <h3 class="footer__column-title">SIGN UP FOR OUR NEWSLETTER</h3>
+        <p class="footer__newsletter-description">
+          Get 15% off your first order and be the first to know about special events, sales and more!
+        </p>
+        <form class="footer__newsletter-form">
+          <input type="email" placeholder="Enter your email" class="footer__newsletter-input">
+          <button type="submit" class="footer__newsletter-submit">→</button>
+        </form>
+        
+        <!-- Social media icons -->
+        <div class="footer__social">
+          <a href="#" class="footer__social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="footer__social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" class="footer__social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16c-.169 1.858-.896 3.631-2.043 4.94-1.195 1.36-2.824 2.28-4.53 2.28-1.704 0-3.329-.92-4.525-2.28C5.328 11.79 4.6 10.018 4.432 8.16 6.376 7.01 8.912 6.08 12 6.08s5.624.93 7.568 2.08zM12 10.56c-1.074 0-1.946.87-1.946 1.94s.872 1.94 1.946 1.94c1.074 0 1.946-.87 1.946-1.94s-.872-1.94-1.946-1.94z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
 
 {% stylesheet %}
   .footer {
-    background-color: #fff;
-    padding: 60px 20px 40px;
-    border-top: 1px solid #eee;
-    margin-top: 80px;
-  }
-
-  .footer__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .footer__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
-  }
-
-  .footer__link {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: #000;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: opacity 0.2s ease;
+    background-color: #f5f4f2;
     font-family: 'Realtime Rounded Test', sans-serif;
   }
 
-  .footer__link:hover {
+  /* Decorative border pattern */
+  .footer__border-pattern {
+    height: 40px;
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 3px, #000 3px, #000 6px),
+      repeating-linear-gradient(-45deg, transparent, transparent 3px, #000 3px, #000 6px);
+    background-size: 8px 8px;
+    border-bottom: 2px solid #000;
+  }
+
+  /* Main footer content */
+  .footer__main {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .footer__hero-title {
+    font-size: 48px;
+    font-weight: 300;
+    font-style: italic;
+    color: #666;
+    margin: 0 0 30px 0;
+    line-height: 1.2;
+    max-width: 500px;
+  }
+
+  .footer__hero-description {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin: 0 0 40px 0;
+    max-width: 480px;
+  }
+
+  .footer__learn-more {
+    display: inline-block;
+    color: #333;
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer__learn-more:hover {
     opacity: 0.7;
   }
 
-  .footer__copyright {
-    text-align: center;
+  /* Values section */
+  .footer__values {
+    display: flex;
+    gap: 40px;
+    justify-content: flex-end;
+    align-items: start;
   }
 
-  .footer__copyright p {
+  .footer__value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer__value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+  }
+
+  .footer__value-label {
     font-size: 12px;
     color: #666;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+
+  /* Footer links section */
+  .footer__links-section {
+    background-color: #f5f4f2;
+    padding: 60px 40px 40px;
+  }
+
+  .footer__links-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 80px;
+  }
+
+  .footer__column-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .footer__links-list {
+    list-style: none;
+    padding: 0;
     margin: 0;
-    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .footer__links-list li {
+    margin-bottom: 12px;
+  }
+
+  .footer__link {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer__link:hover {
+    color: #333;
+  }
+
+  /* Newsletter section */
+  .footer__newsletter {
+    grid-column: span 1;
+  }
+
+  .footer__newsletter-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 25px 0;
+  }
+
+  .footer__newsletter-form {
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  .footer__newsletter-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .footer__newsletter-input:focus {
+    border-bottom-color: #333;
+  }
+
+  .footer__newsletter-submit {
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s ease;
+  }
+
+  .footer__newsletter-submit:hover {
+    color: #333;
+  }
+
+  /* Social media icons */
+  .footer__social {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer__social-link {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: color 0.2s ease;
+  }
+
+  .footer__social-link:hover {
+    color: #333;
+  }
+
+  /* Responsive design */
+  @media (max-width: 1200px) {
+    .footer__main {
+      padding: 60px 30px;
+      gap: 60px;
+    }
+
+    .footer__links-section {
+      padding: 50px 30px 30px;
+    }
+
+    .footer__links-grid {
+      gap: 50px;
+    }
+
+    .footer__values {
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 968px) {
+    .footer__main {
+      grid-template-columns: 1fr;
+      gap: 50px;
+      text-align: left;
+    }
+
+    .footer__values {
+      justify-content: flex-start;
+      gap: 25px;
+    }
+
+    .footer__links-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .footer__newsletter {
+      grid-column: span 3;
+    }
   }
 
   @media (max-width: 768px) {
-    .footer {
-      padding: 40px 20px 30px;
-      margin-top: 60px;
+    .footer__main {
+      padding: 40px 20px;
+      gap: 40px;
     }
 
-    .footer__links {
+    .footer__hero-title {
+      font-size: 36px;
+    }
+
+    .footer__values {
       gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .footer__content {
+    .footer__links-section {
+      padding: 40px 20px 30px;
+    }
+
+    .footer__links-grid {
+      grid-template-columns: repeat(2, 1fr);
       gap: 30px;
+    }
+
+    .footer__newsletter {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer__hero-title {
+      font-size: 28px;
+    }
+
+    .footer__values {
+      justify-content: center;
+    }
+
+    .footer__value {
+      gap: 8px;
+    }
+
+    .footer__value-icon {
+      width: 50px;
+      height: 50px;
+    }
+
+    .footer__links-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .footer__newsletter {
+      grid-column: span 1;
     }
   }
 {% endstylesheet %}
