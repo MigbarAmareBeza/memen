@@ -16,7 +16,7 @@
       "custom_css": [],
       "settings": {
         "menu": "main-menu",
-        "show_payment_icons": true
+        "show_payment_icons": false
       }
     }
   },
