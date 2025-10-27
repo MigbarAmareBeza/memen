@@ -9,6 +9,8 @@
  */
 {
   "current": {
+    "logo": "shopify://shop_images/svgviewer-png-output_2.png",
+    "logo_width": 180,
     "content_for_index": [],
     "blocks": {
       "13768625480086291342": {
