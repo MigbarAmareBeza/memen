@@ -5,6 +5,17 @@
   <!-- Main footer content -->
   <div class="footer__main">
     <div class="footer__hero">
+      {% if settings.logo %}
+        <div class="footer__logo">
+          <img 
+            src="{{ settings.logo | image_url: width: settings.logo_width }}" 
+            alt="{{ shop.name }}"
+            width="{{ settings.logo_width }}"
+            height="auto"
+            class="footer__logo-image"
+          />
+        </div>
+      {% endif %}
       <h2 class="footer__hero-title">100% made with love and care in Africa</h2>
       <p class="footer__hero-description">
         At lemlem, we're committed to building a strong, fair and sustainable fashion industry in Africa, with 
@@ -70,13 +81,39 @@
         <a href="{{ routes.account_login_url }}" class="footer__link">SIGN IN</a>
         <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="footer__link">IMPACT</a>
       </div>
+      
+      <!-- Newsletter signup -->
+      <div class="footer__newsletter">
+        <h3 class="footer__newsletter-title">Stay Updated</h3>
+        <p class="footer__newsletter-description">Get the latest updates on new collections and exclusive offers.</p>
+        <form class="footer__newsletter-form" action="{{ routes.root_url }}contact#contact_form" method="post" id="contact_form" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="customer" />
+          <input type="hidden" name="utf8" value="✓" />
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer__newsletter-input-wrapper">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              id="newsletter-email"
+              placeholder="Enter your email address"
+              class="footer__newsletter-input"
+              required
+            >
+            <button type="submit" class="footer__newsletter-submit">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.16667 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </footer>
 
 {% stylesheet %}
   .footer {
-    background-color: #f5f4f2;
+    background-color: #ffffff;
     font-family: 'Realtime Rounded Test', sans-serif;
     width: 100%;
     margin: 0;
@@ -102,6 +139,16 @@
     gap: 60px;
     align-items: start;
     box-sizing: border-box;
+  }
+
+  .footer__logo {
+    margin-bottom: 25px;
+  }
+
+  .footer__logo-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 
   .footer__hero-title {
@@ -202,6 +249,82 @@
     color: #333;
   }
 
+  /* Newsletter section */
+  .footer__newsletter {
+    margin-top: 30px;
+    max-width: 350px;
+  }
+
+  .footer__newsletter-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 8px 0;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .footer__newsletter-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+    margin: 0 0 20px 0;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
+  .footer__newsletter-form {
+    width: 100%;
+  }
+
+  .footer__newsletter-input-wrapper {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    transition: border-color 0.2s ease;
+  }
+
+  .footer__newsletter-input-wrapper:focus-within {
+    border-color: #333;
+  }
+
+  .footer__newsletter-input {
+    flex: 1;
+    border: none;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    background: transparent;
+    outline: none;
+    color: #333;
+  }
+
+  .footer__newsletter-input::placeholder {
+    color: #999;
+  }
+
+  .footer__newsletter-submit {
+    background: #333;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    min-width: 48px;
+  }
+
+  .footer__newsletter-submit:hover {
+    background: #555;
+  }
+
+  .footer__newsletter-submit svg {
+    width: 18px;
+    height: 18px;
+  }
+
   /* Responsive design */
   @media (max-width: 1200px) {
     .footer__main {
@@ -260,6 +383,20 @@
       gap: 20px;
       flex-wrap: wrap;
     }
+
+    .footer__newsletter {
+      margin-top: 25px;
+      max-width: 100%;
+    }
+
+    .footer__newsletter-title {
+      font-size: 15px;
+    }
+
+    .footer__newsletter-description {
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -291,6 +428,29 @@
 
     .footer__link {
       font-size: 10px;
+    }
+
+    .footer__newsletter {
+      margin-top: 20px;
+    }
+
+    .footer__newsletter-title {
+      font-size: 14px;
+    }
+
+    .footer__newsletter-description {
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer__newsletter-input {
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+
+    .footer__newsletter-submit {
+      padding: 10px 14px;
+      min-width: 44px;
     }
   }
 {% endstylesheet %}

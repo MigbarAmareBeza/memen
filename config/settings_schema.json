@@ -23,6 +23,26 @@
     ]
   },
   {
+    "name": "t:general.logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:labels.logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "t:labels.logo_width",
+        "default": 120
+      }
+    ]
+  },
+  {
     "name": "t:general.layout",
     "settings": [
       {
