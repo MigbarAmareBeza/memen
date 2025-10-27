@@ -6,18 +6,26 @@
 class ProductGallery {
   constructor() {
     this.mainImage = document.querySelector('.product-image__main');
+    this.mainImageButton = document.querySelector('.product-image__main-button');
     this.thumbnails = document.querySelectorAll('.product-image__thumbnail');
     this.prevButton = document.querySelector('.image-nav__prev');
     this.nextButton = document.querySelector('.image-nav__next');
     this.currentImageSpan = document.querySelector('.current-image');
-    this.currentIndex = 0;
+    this.currentIndex = -1; // -1 represents featured image, 0+ represents thumbnail images
+    this.featuredImageUrl = null;
     this.productImages = [];
     
     this.init();
   }
 
   init() {
-    if (!this.mainImage || this.thumbnails.length === 0) return;
+    if (!this.mainImage) return;
+    
+    // Store featured image URL
+    if (this.mainImageButton) {
+      this.featuredImageUrl = this.mainImageButton.dataset.featuredImage;
+      this.mainImageButton.addEventListener('click', () => this.returnToFeaturedImage());
+    }
     
     // Store all image URLs from thumbnail data attributes
     this.thumbnails.forEach((thumbnail, index) => {
@@ -59,29 +67,51 @@ class ProductGallery {
       this.mainImage.style.opacity = '1';
     }, 150);
     
-    // Update active thumbnail (only if not on main image)
+    // Update active thumbnail
     this.thumbnails.forEach(thumb => thumb.classList.remove('active'));
-    if (index > 0 && this.thumbnails[index - 1]) {
-      this.thumbnails[index - 1].classList.add('active');
+    if (this.thumbnails[index]) {
+      this.thumbnails[index].classList.add('active');
     }
     
     // Update navigation state
     this.updateNavigationState();
     
     // Scroll thumbnail into view
-    if (index > 0) {
-      this.scrollThumbnailIntoView(index - 1);
-    }
+    this.scrollThumbnailIntoView(index);
+  }
+  
+  returnToFeaturedImage() {
+    if (this.currentIndex === -1) return; // Already on featured image
+    
+    this.currentIndex = -1;
+    
+    // Update main image with fade effect
+    this.mainImage.style.opacity = '0.5';
+    
+    setTimeout(() => {
+      this.mainImage.src = this.featuredImageUrl;
+      this.mainImage.style.opacity = '1';
+    }, 150);
+    
+    // Remove active state from all thumbnails
+    this.thumbnails.forEach(thumb => thumb.classList.remove('active'));
+    
+    // Update navigation state
+    this.updateNavigationState();
   }
   
   previousImage() {
     if (this.currentIndex > 0) {
       this.changeMainImage(this.currentIndex - 1);
+    } else if (this.currentIndex === 0 && this.featuredImageUrl) {
+      this.returnToFeaturedImage();
     }
   }
   
   nextImage() {
-    if (this.currentIndex < this.productImages.length - 1) {
+    if (this.currentIndex === -1 && this.productImages.length > 0) {
+      this.changeMainImage(0);
+    } else if (this.currentIndex < this.productImages.length - 1) {
       this.changeMainImage(this.currentIndex + 1);
     }
   }
@@ -89,7 +119,7 @@ class ProductGallery {
   
   updateNavigationState() {
     if (this.prevButton) {
-      this.prevButton.disabled = this.currentIndex === 0;
+      this.prevButton.disabled = this.currentIndex === -1;
     }
     
     if (this.nextButton) {

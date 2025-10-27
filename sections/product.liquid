@@ -7,17 +7,24 @@
     <div class="product-images">
       {% if product.images.size > 0 %}
         <div class="product-images__main">
-          <img 
-            src="{{ product.featured_image | image_url: width: 800 }}" 
-            alt="{{ product.title }}"
-            class="product-image__main"
-            id="main-product-image"
-          />
+          <button 
+            class="product-image__main-button"
+            data-featured-image="{{ product.featured_image | image_url: width: 800 }}"
+            aria-label="Return to main product image"
+          >
+            <img 
+              src="{{ product.featured_image | image_url: width: 800 }}" 
+              alt="{{ product.title }}"
+              class="product-image__main"
+              id="main-product-image"
+            />
+          </button>
         </div>
-        {% if product.images.size > 1 %}
+        {% assign non_featured_images = product.images | where_not: 'id', product.featured_image.id %}
+        {% if non_featured_images.size > 0 %}
           <div class="product-images__navigation">
             <div class="product-images__thumbnails">
-              {% for image in product.images offset: 1 %}
+              {% for image in non_featured_images %}
                 <button 
                   class="product-image__thumbnail {% if forloop.first %}active{% endif %}"
                   data-image-src="{{ image | image_url: width: 800 }}"
