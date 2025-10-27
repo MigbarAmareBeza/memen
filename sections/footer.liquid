@@ -13,63 +13,63 @@
       <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="footer__learn-more">LEARN MORE</a>
     </div>
     
-    <!-- Values icons -->
-    <div class="footer__values">
-      <div class="footer__value">
-        <div class="footer__value-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path d="M20 2C10.05 2 2 10.05 2 20C2 29.95 10.05 38 20 38C29.95 38 38 29.95 38 20C38 10.05 29.95 2 20 2Z" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
+    <!-- Values icons and links section -->
+    <div class="footer__right-section">
+      <div class="footer__values">
+        <div class="footer__value">
+          <div class="footer__value-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 2C10.05 2 2 10.05 2 20C2 29.95 10.05 38 20 38C29.95 38 38 29.95 38 20C38 10.05 29.95 2 20 2Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="footer__value-label">Made In<br>Africa</span>
         </div>
-        <span class="footer__value-label">Made In<br>Africa</span>
+        
+        <div class="footer__value">
+          <div class="footer__value-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 5L25 15H35L27.5 22.5L30 32.5L20 27.5L10 32.5L12.5 22.5L5 15H15L20 5Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="footer__value-label">Eco-<br>Friendly</span>
+        </div>
+        
+        <div class="footer__value">
+          <div class="footer__value-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M8 8H32V32H8V8ZM12 12V28M16 12V28M20 12V28M24 12V28M28 12V28" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="footer__value-label">Hand-<br>woven in<br>Ethiopia</span>
+        </div>
+        
+        <div class="footer__value">
+          <div class="footer__value-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M12 8L20 2L28 8V20L20 38L12 20V8Z" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="footer__value-label">Upcycling</span>
+        </div>
+        
+        <div class="footer__value">
+          <div class="footer__value-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 5C12.5 5 6.5 11 6.5 18.5C6.5 26 12.5 32 20 32C27.5 32 33.5 26 33.5 18.5C33.5 11 27.5 5 20 5ZM20 28C14.5 28 10 23.5 10 18.5C10 13.5 14.5 9 20 9C25.5 9 30 13.5 30 18.5C30 23.5 25.5 28 20 28Z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          </div>
+          <span class="footer__value-label">Giving Back</span>
+        </div>
       </div>
       
-      <div class="footer__value">
-        <div class="footer__value-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path d="M20 5L25 15H35L27.5 22.5L30 32.5L20 27.5L10 32.5L12.5 22.5L5 15H15L20 5Z" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <span class="footer__value-label">Eco-<br>Friendly</span>
+      <!-- Simple footer links aligned under icons -->
+      <div class="footer__simple-links">
+        <a href="{{ collections.all.url }}" class="footer__link">SHOP</a>
+        <a href="{{ pages['policies'].url }}" class="footer__link">POLICIES</a>
+        <a href="{{ routes.account_url }}" class="footer__link">REGISTER</a>
+        <a href="{{ routes.account_login_url }}" class="footer__link">SIGN IN</a>
+        <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="footer__link">IMPACT</a>
       </div>
-      
-      <div class="footer__value">
-        <div class="footer__value-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path d="M8 8H32V32H8V8ZM12 12V28M16 12V28M20 12V28M24 12V28M28 12V28" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <span class="footer__value-label">Hand-<br>woven in<br>Ethiopia</span>
-      </div>
-      
-      <div class="footer__value">
-        <div class="footer__value-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path d="M12 8L20 2L28 8V20L20 38L12 20V8Z" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <span class="footer__value-label">Upcycling</span>
-      </div>
-      
-      <div class="footer__value">
-        <div class="footer__value-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path d="M20 5C12.5 5 6.5 11 6.5 18.5C6.5 26 12.5 32 20 32C27.5 32 33.5 26 33.5 18.5C33.5 11 27.5 5 20 5ZM20 28C14.5 28 10 23.5 10 18.5C10 13.5 14.5 9 20 9C25.5 9 30 13.5 30 18.5C30 23.5 25.5 28 20 28Z" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <span class="footer__value-label">Giving Back</span>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Simple footer links -->
-  <div class="footer__links-section">
-    <div class="footer__simple-links">
-      <a href="{{ collections.all.url }}" class="footer__link">SHOP</a>
-      <a href="{{ pages['policies'].url }}" class="footer__link">POLICIES</a>
-      <a href="{{ routes.account_url }}" class="footer__link">REGISTER</a>
-      <a href="{{ routes.account_login_url }}" class="footer__link">SIGN IN</a>
-      <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="footer__link">IMPACT</a>
     </div>
   </div>
 </footer>
@@ -95,30 +95,30 @@
 
   /* Main footer content */
   .footer__main {
-    padding: 80px 40px;
+    padding: 40px 40px 30px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 60px;
     align-items: start;
     box-sizing: border-box;
   }
 
   .footer__hero-title {
-    font-size: 48px;
+    font-size: 21px;
     font-weight: 300;
     font-style: italic;
     color: #666;
-    margin: 0 0 30px 0;
-    line-height: 1.2;
+    margin: 0 0 20px 0;
+    line-height: 1.3;
     max-width: 500px;
   }
 
   .footer__hero-description {
     font-size: 16px;
     color: #333;
-    line-height: 1.6;
-    margin: 0 0 40px 0;
+    line-height: 1.5;
+    margin: 0 0 25px 0;
     max-width: 480px;
   }
 
@@ -137,10 +137,18 @@
     opacity: 0.7;
   }
 
+  /* Right section containing values and links */
+  .footer__right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-end;
+  }
+
   /* Values section */
   .footer__values {
     display: flex;
-    gap: 40px;
+    gap: 30px;
     justify-content: flex-end;
     align-items: start;
   }
@@ -150,12 +158,12 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 12px;
+    gap: 10px;
   }
 
   .footer__value-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 1px solid #ccc;
     display: flex;
@@ -171,20 +179,12 @@
     font-weight: 400;
   }
 
-  /* Footer links section */
-  .footer__links-section {
-    background-color: #f5f4f2;
-    padding: 60px 0 40px;
-    width: 100%;
-  }
-
+  /* Simple links now under the values */
   .footer__simple-links {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    gap: 60px;
-    padding: 0 40px;
-    box-sizing: border-box;
+    gap: 40px;
   }
 
   .footer__link {
@@ -205,70 +205,69 @@
   /* Responsive design */
   @media (max-width: 1200px) {
     .footer__main {
-      padding: 60px 30px;
-      gap: 60px;
-    }
-
-    .footer__links-section {
-      padding: 50px 30px 30px;
-    }
-
-    .footer__simple-links {
-      gap: 40px;
-      padding: 0 30px;
+      padding: 35px 30px 25px;
+      gap: 50px;
     }
 
     .footer__values {
-      gap: 30px;
+      gap: 25px;
+    }
+
+    .footer__simple-links {
+      gap: 35px;
     }
   }
 
   @media (max-width: 968px) {
     .footer__main {
       grid-template-columns: 1fr;
-      gap: 50px;
+      gap: 30px;
       text-align: left;
+    }
+
+    .footer__right-section {
+      align-items: flex-start;
     }
 
     .footer__values {
       justify-content: flex-start;
-      gap: 25px;
+      gap: 20px;
     }
 
     .footer__simple-links {
-      gap: 30px;
+      justify-content: flex-start;
+      gap: 25px;
     }
   }
 
   @media (max-width: 768px) {
     .footer__main {
-      padding: 40px 20px;
-      gap: 40px;
+      padding: 30px 20px 20px;
+      gap: 25px;
     }
 
     .footer__hero-title {
-      font-size: 36px;
+      font-size: 19px;
     }
 
     .footer__values {
-      gap: 20px;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
-    .footer__links-section {
-      padding: 40px 20px 30px;
-    }
-
     .footer__simple-links {
-      gap: 25px;
-      padding: 0 20px;
+      gap: 20px;
       flex-wrap: wrap;
     }
   }
 
   @media (max-width: 480px) {
+    .footer__main {
+      padding: 25px 15px 15px;
+    }
+
     .footer__hero-title {
-      font-size: 28px;
+      font-size: 18px;
     }
 
     .footer__values {
@@ -280,12 +279,12 @@
     }
 
     .footer__value-icon {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
 
     .footer__simple-links {
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
     }
 
