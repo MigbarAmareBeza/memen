@@ -90,21 +90,17 @@
           <input type="hidden" name="form_type" value="customer" />
           <input type="hidden" name="utf8" value="✓" />
           <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="footer__newsletter-input-wrapper">
-            <input 
-              type="email" 
-              name="contact[email]" 
-              id="newsletter-email"
-              placeholder="Enter your email address"
-              class="footer__newsletter-input"
-              required
-            >
-            <button type="submit" class="footer__newsletter-submit">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.16667 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
+          <input 
+            type="email" 
+            name="contact[email]" 
+            id="newsletter-email"
+            placeholder="Enter your email address"
+            class="footer__newsletter-input"
+            required
+          >
+          <button type="submit" class="footer__newsletter-submit">
+            Subscribe
+          </button>
         </form>
       </div>
     </div>
@@ -278,30 +274,27 @@
 
   .footer__newsletter-form {
     width: 100%;
-  }
-
-  .footer__newsletter-input-wrapper {
     display: flex;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #fff;
-    transition: border-color 0.2s ease;
-  }
-
-  .footer__newsletter-input-wrapper:focus-within {
-    border-color: #333;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .footer__newsletter-input {
-    flex: 1;
-    border: none;
-    padding: 10px 14px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 16px;
     font-size: 12px;
     font-family: 'Realtime Rounded Test', sans-serif;
-    background: transparent;
+    background: #fff;
     outline: none;
     color: #333;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .footer__newsletter-input:focus {
+    border-color: #333;
   }
 
   .footer__newsletter-input::placeholder {
@@ -311,23 +304,21 @@
   .footer__newsletter-submit {
     background: #333;
     border: none;
-    padding: 10px 14px;
+    border-radius: 8px;
+    padding: 12px 24px;
     cursor: pointer;
     color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 12px;
+    font-family: 'Realtime Rounded Test', sans-serif;
+    font-weight: 500;
     transition: background-color 0.2s ease;
-    min-width: 44px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    align-self: flex-start;
   }
 
   .footer__newsletter-submit:hover {
     background: #555;
-  }
-
-  .footer__newsletter-submit svg {
-    width: 18px;
-    height: 18px;
   }
 
   /* Responsive design */
@@ -449,13 +440,13 @@
     }
 
     .footer__newsletter-input {
-      padding: 8px 12px;
+      padding: 10px 14px;
       font-size: 11px;
     }
 
     .footer__newsletter-submit {
-      padding: 8px 12px;
-      min-width: 40px;
+      padding: 10px 20px;
+      font-size: 11px;
     }
   }
 {% endstylesheet %}
