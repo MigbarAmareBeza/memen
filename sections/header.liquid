@@ -1,18 +1,35 @@
 <header class="header">
   <nav class="header__nav">
+    <!-- Left side navigation -->
     <div class="header__menu">
       <a href="{{ routes.root_url }}" class="header__link">SHOP</a>
       <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="header__link">IMPACT</a>
-      <a href="/collections/all" class="header__link">SEARCH</a>
       <a href="{{ routes.cart_url }}" class="header__link">
         CART({{ cart.item_count }})
       </a>
       {% if customer %}
         <a href="{{ routes.account_url }}" class="header__link">ACCOUNT</a>
         <a href="{{ routes.account_logout_url }}" class="header__link">SIGN OUT</a>
-      {% else %}
-        <a href="{{ routes.account_login_url }}" class="header__link">SIGN IN</a>
       {% endif %}
+    </div>
+    
+    <!-- Right side icons -->
+    <div class="header__icons">
+      <a href="/collections/all" class="header__icon" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="15 15L19 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      
+      {% unless customer %}
+        <a href="{{ routes.account_login_url }}" class="header__icon" aria-label="Sign In">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M2 20C2 16.6863 5.68629 14 10 14C14.3137 14 18 16.6863 18 20" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </a>
+      {% endunless %}
     </div>
   </nav>
 </header>
@@ -32,18 +49,43 @@
 
   .header__nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     margin: 0;
-    padding: 0 20px 0 40px;
+    padding: 0 40px;
   }
-
 
   .header__menu {
     display: flex;
     gap: 40px;
     align-items: center;
+  }
+
+  .header__icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .header__icon {
+    color: #000;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  .header__icon:hover {
+    opacity: 0.7;
+  }
+
+  .header__icon svg {
+    width: 20px;
+    height: 20px;
   }
 
   .header__link {
@@ -62,22 +104,54 @@
   }
 
   @media (max-width: 768px) {
+    .header__nav {
+      padding: 0 20px;
+    }
+    
     .header__menu {
       gap: 20px;
+    }
+    
+    .header__icons {
+      gap: 15px;
     }
     
     .header__link {
       font-size: 10px;
     }
+    
+    .header__icon {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .header__icon svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   @media (max-width: 480px) {
     .header__nav {
-      padding: 0 15px 0 15px;
+      padding: 0 15px;
     }
     
     .header__menu {
       gap: 15px;
+    }
+    
+    .header__icons {
+      gap: 12px;
+    }
+    
+    .header__icon {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .header__icon svg {
+      width: 16px;
+      height: 16px;
     }
   }
 {% endstylesheet %}
