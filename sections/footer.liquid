@@ -101,9 +101,11 @@
             class="footer__newsletter-input"
             required
           >
-          <button type="submit" class="footer__newsletter-submit">
-            Subscribe
-          </button>
+          <div class="footer__newsletter-button-wrapper">
+            <button type="submit" class="footer__newsletter-submit">
+              Subscribe
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -305,24 +307,84 @@
   }
 
   .footer__newsletter-submit {
-    background: #f8f8f8;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    padding: 12px 20px;
-    cursor: pointer;
-    color: #333;
+    display: inline-block;
+    padding: 8px 32px;
+    background-color: transparent;
+    color: #000;
+    border: none;
     font-size: 14px;
     font-family: 'Realtime Rounded Test', sans-serif;
-    font-weight: 400;
-    transition: all 0.2s ease;
-    text-transform: none;
-    letter-spacing: 0;
-    align-self: flex-start;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0;
+  }
+
+  /* Top corner crop marks */
+  .footer__newsletter-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    pointer-events: none;
+  }
+
+  .footer__newsletter-submit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    pointer-events: none;
   }
 
   .footer__newsletter-submit:hover {
-    background: #eeeeee;
-    border-color: #ccc;
+    opacity: 0.7;
+  }
+
+  /* Button wrapper for bottom crop marks */
+  .footer__newsletter-button-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .footer__newsletter-button-wrapper::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .footer__newsletter-button-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+    pointer-events: none;
+    z-index: 1;
   }
 
   /* Responsive design */
