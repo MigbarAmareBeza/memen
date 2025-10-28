@@ -3,7 +3,6 @@
     <!-- Left side navigation -->
     <div class="header__menu">
       <a href="{{ routes.root_url }}" class="header__link">SHOP</a>
-      <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="header__link">IMPACT</a>
       {% if customer %}
         <a href="{{ routes.account_url }}" class="header__link">ACCOUNT</a>
         <a href="{{ routes.account_logout_url }}" class="header__link">SIGN OUT</a>
