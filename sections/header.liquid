@@ -4,9 +4,6 @@
     <div class="header__menu">
       <a href="{{ routes.root_url }}" class="header__link">SHOP</a>
       <a href="{{ pages.impact.url | default: '/pages/impact' }}" class="header__link">IMPACT</a>
-      <a href="{{ routes.cart_url }}" class="header__link">
-        CART({{ cart.item_count }})
-      </a>
       {% if customer %}
         <a href="{{ routes.account_url }}" class="header__link">ACCOUNT</a>
         <a href="{{ routes.account_logout_url }}" class="header__link">SIGN OUT</a>
@@ -30,6 +27,15 @@
           </svg>
         </a>
       {% endunless %}
+      
+      <a href="{{ routes.cart_url }}" class="header__icon header__cart-icon" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V16.5M9 19.5C9.8 19.5 10.5 18.8 10.5 18S9.8 16.5 9 16.5 7.5 17.2 7.5 18 8.2 19.5 9 19.5ZM20 19.5C20.8 19.5 21.5 18.8 21.5 18S20.8 16.5 20 16.5 18.5 17.2 18.5 18 19.2 19.5 20 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="header__cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
     </div>
   </nav>
 </header>
@@ -88,6 +94,28 @@
     height: 20px;
   }
 
+  .header__cart-icon {
+    position: relative;
+  }
+
+  .header__cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #000;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 50%;
+    min-width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Realtime Rounded Test', sans-serif;
+  }
+
   .header__link {
     font-size: 12px;
     font-weight: 400;
@@ -129,6 +157,14 @@
       width: 18px;
       height: 18px;
     }
+    
+    .header__cart-count {
+      font-size: 9px;
+      min-width: 14px;
+      height: 14px;
+      top: -7px;
+      right: -7px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -152,6 +188,14 @@
     .header__icon svg {
       width: 16px;
       height: 16px;
+    }
+    
+    .header__cart-count {
+      font-size: 8px;
+      min-width: 12px;
+      height: 12px;
+      top: -6px;
+      right: -6px;
     }
   }
 {% endstylesheet %}

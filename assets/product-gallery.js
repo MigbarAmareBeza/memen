@@ -11,7 +11,7 @@ class ProductGallery {
     this.prevButton = document.querySelector('.image-nav__prev');
     this.nextButton = document.querySelector('.image-nav__next');
     this.currentImageSpan = document.querySelector('.current-image');
-    this.currentIndex = -1; // -1 represents featured image, 0+ represents thumbnail images
+    this.currentIndex = 0; // 0+ represents thumbnail images, no featured image shown
     this.featuredImageUrl = null;
     this.productImages = [];
     
@@ -21,10 +21,10 @@ class ProductGallery {
   init() {
     if (!this.mainImage) return;
     
-    // Store featured image URL
+    // Store first non-featured image URL as default
     if (this.mainImageButton) {
       this.featuredImageUrl = this.mainImageButton.dataset.featuredImage;
-      this.mainImageButton.addEventListener('click', () => this.returnToFeaturedImage());
+      this.mainImageButton.addEventListener('click', () => this.returnToFirstImage());
     }
     
     // Store all image URLs from thumbnail data attributes
@@ -48,6 +48,11 @@ class ProductGallery {
     
     if (this.nextButton) {
       this.nextButton.addEventListener('click', () => this.nextImage());
+    }
+    
+    // Set first thumbnail as active on load
+    if (this.thumbnails.length > 0) {
+      this.thumbnails[0].classList.add('active');
     }
     
     // Initialize navigation state
@@ -80,38 +85,20 @@ class ProductGallery {
     this.scrollThumbnailIntoView(index);
   }
   
-  returnToFeaturedImage() {
-    if (this.currentIndex === -1) return; // Already on featured image
+  returnToFirstImage() {
+    if (this.currentIndex === 0) return; // Already on first image
     
-    this.currentIndex = -1;
-    
-    // Update main image with fade effect
-    this.mainImage.style.opacity = '0.5';
-    
-    setTimeout(() => {
-      this.mainImage.src = this.featuredImageUrl;
-      this.mainImage.style.opacity = '1';
-    }, 150);
-    
-    // Remove active state from all thumbnails
-    this.thumbnails.forEach(thumb => thumb.classList.remove('active'));
-    
-    // Update navigation state
-    this.updateNavigationState();
+    this.changeMainImage(0);
   }
   
   previousImage() {
     if (this.currentIndex > 0) {
       this.changeMainImage(this.currentIndex - 1);
-    } else if (this.currentIndex === 0 && this.featuredImageUrl) {
-      this.returnToFeaturedImage();
     }
   }
   
   nextImage() {
-    if (this.currentIndex === -1 && this.productImages.length > 0) {
-      this.changeMainImage(0);
-    } else if (this.currentIndex < this.productImages.length - 1) {
+    if (this.currentIndex < this.productImages.length - 1) {
       this.changeMainImage(this.currentIndex + 1);
     }
   }
@@ -119,7 +106,7 @@ class ProductGallery {
   
   updateNavigationState() {
     if (this.prevButton) {
-      this.prevButton.disabled = this.currentIndex === -1;
+      this.prevButton.disabled = this.currentIndex === 0;
     }
     
     if (this.nextButton) {
