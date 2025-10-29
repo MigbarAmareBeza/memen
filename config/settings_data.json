@@ -12,7 +12,7 @@
     "logo": "shopify://shop_images/svgviewer-output.svg",
     "logo_width": 190,
     "max_page_width": "110rem",
-    "min_page_margin": 73,
+    "min_page_margin": 10,
     "input_corner_radius": 0,
     "checkout_logo_image": "shopify://shop_images/svgviewer-output.svg",
     "checkout_accent_color": "#3622c9",
