@@ -2,7 +2,7 @@
   <nav class="header__nav">
     <!-- Left side navigation -->
     <div class="header__menu">
-      <a href="{{ routes.root_url }}" class="header__link">SHOP</a>
+      <a href="/collections/all" class="header__link">SHOP</a>
       {% if customer %}
         <a href="{{ routes.account_url }}" class="header__link">ACCOUNT</a>
         <a href="{{ routes.account_logout_url }}" class="header__link">SIGN OUT</a>
@@ -11,12 +11,6 @@
     
     <!-- Right side icons -->
     <div class="header__icons">
-      <a href="/collections/all" class="header__icon" aria-label="Search">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8.5" cy="8.5" r="7.5" stroke="currentColor" stroke-width="1.5"/>
-          <path d="m15 15 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
       
       {% unless customer %}
         <a href="{{ routes.account_login_url }}" class="header__icon" aria-label="Sign In">
