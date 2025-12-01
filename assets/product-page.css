@@ -481,7 +481,7 @@
   }
 
   .product-image__thumbnail {
-    height: 100px;
+    height: 300px;
     aspect-ratio: 9/16;
     margin: 0;
     min-width: 0;
