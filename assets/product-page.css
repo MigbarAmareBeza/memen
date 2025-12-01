@@ -54,6 +54,9 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .product-images__thumbnails {
@@ -85,6 +88,8 @@
   opacity: 0.7;
   margin: 0;
   min-width: 0;
+  outline: none;
+  box-sizing: border-box;
 }
 
 .product-image__thumbnail:hover {
@@ -100,6 +105,7 @@
   height: 100%;
   object-fit: contain;
   border-radius: 0;
+  display: block;
 }
 
 .product-images__controls {
