@@ -216,19 +216,16 @@
     const image2 = document.querySelector('.hero-banner__image--2');
     
     if (image1 && image2) {
-      let isFirstImageActive = true;
+      // Randomly pick which image to show on page load
+      const showFirstImage = Math.random() < 0.5;
       
-      // Switch images every 4 seconds
-      setInterval(function() {
-        if (isFirstImageActive) {
-          image1.classList.remove('hero-banner__image--active');
-          image2.classList.add('hero-banner__image--active');
-        } else {
-          image2.classList.remove('hero-banner__image--active');
-          image1.classList.add('hero-banner__image--active');
-        }
-        isFirstImageActive = !isFirstImageActive;
-      }, 4000);
+      if (showFirstImage) {
+        image1.classList.add('hero-banner__image--active');
+        image2.classList.remove('hero-banner__image--active');
+      } else {
+        image1.classList.remove('hero-banner__image--active');
+        image2.classList.add('hero-banner__image--active');
+      }
     }
   });
 </script>
