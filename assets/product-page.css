@@ -389,7 +389,7 @@
 
   .product-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 0px;
     padding: 0;
     display: block;
   }
