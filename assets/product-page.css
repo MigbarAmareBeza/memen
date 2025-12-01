@@ -86,7 +86,7 @@
 
 .product-image__thumbnail {
   flex: 0 0 auto;
-  height: 480px;
+  width: 50%;
   aspect-ratio: 9/16;
   border: none;
   border-radius: 0;
@@ -437,7 +437,7 @@
   }
 
   .product-image__thumbnail {
-    height: 520px;
+    width: 50%;
     aspect-ratio: 9/16;
     margin: 0;
   }
@@ -487,7 +487,7 @@
   }
 
   .product-image__thumbnail {
-    height: 400px;
+    width: 50%;
     aspect-ratio: 9/16;
     margin: 0;
   }
