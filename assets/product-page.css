@@ -65,7 +65,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  margin-top: 65px;
+  margin-top: -65px;
 }
 
 .product-images__thumbnails {
@@ -86,7 +86,7 @@
 
 .product-image__thumbnail {
   flex: 0 0 auto;
-  width: 35%;
+  width: 30%;
   aspect-ratio: 9/16;
   border: none;
   border-radius: 0;
