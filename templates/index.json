@@ -16,17 +16,9 @@
         "hero_image_left_2": "shopify://shop_images/PHOTO-2025-04-20-11-31-47_8.jpg",
         "hero_image_right": "shopify://shop_images/IMG_5691.jpg"
       }
-    },
-    "products": {
-      "type": "product-grid",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 2
-      }
     }
   },
   "order": [
-    "hero",
-    "products"
+    "hero"
   ]
 }
